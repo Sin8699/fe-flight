@@ -18,7 +18,7 @@ function Login() {
           className="background-login"
           style={{ backgroundImage: "url(/images/280727.jpg" }}
         ></div>
-        <div className="form-login responsive">
+        <div className="form-login">
           <Avatar>
             <LockOutlinedIcon />
           </Avatar>
@@ -47,7 +47,7 @@ function Login() {
               </Button>
             </div>
             <a href="/">
-              <p className="forgot-password ">Forgot password?</p>
+              <p className="link-forgot-password">Forgot password?</p>
             </a>
           </form>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { Header, Homepage, Login, Signup } from "./components";
+import { Header, Homepage, Login, Signup, ForgotPassword } from "./components";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -47,7 +47,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Login />
+      <Homepage />
     </div>
   );
 }

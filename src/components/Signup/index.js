@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import "./style.scss";
 import {
-  Select,
-  MenuItem,
+  Avatar,
   Button,
-  CssBaseline,
   TextField,
-  Grid,
   Typography,
   Container,
-  FormControl,
-  InputLabel,
 } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function Signup() {
   const [error, setError] = useState(false);
@@ -19,8 +15,10 @@ function Signup() {
   return (
     <div className="signup">
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <div className="paper">
+          <Avatar>
+            <AccountCircleIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -56,7 +54,6 @@ function Signup() {
               name="password"
               label="Password"
               type="password"
-              autoComplete="current-password"
             />
             <TextField
               margin="normal"
@@ -65,7 +62,6 @@ function Signup() {
               name="confirmPassword"
               label="Confirm Password"
               type="password"
-              autoComplete="current-password"
             />
             {error && (
               <p className="error">
