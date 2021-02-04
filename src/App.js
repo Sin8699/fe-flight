@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { Header, Homepage, Login, Signup } from "./Component";
+import { Header, Homepage, Login, Signup } from "./components";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
