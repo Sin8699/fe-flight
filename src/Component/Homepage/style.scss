@@ -1,0 +1,140 @@
+.homepage {
+  .item-carousel {
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+  }
+
+  .lifestyle-zone {
+    padding-top: 70px;
+    margin: auto;
+    text-align: center;
+    color: #3d1a6e;
+    h1 {
+      font-size: 50px;
+      font-weight: 400px;
+    }
+    .info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 70px;
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
+      .img {
+        border-radius: 10px;
+        max-width: 100%;
+        width: 700px;
+      }
+      .title {
+        font-size: 30px;
+      }
+      .detail {
+        font-size: 20px;
+        color: black;
+      }
+      .description {
+        text-align: left;
+        @media (max-width: 800px) {
+          margin-top: 10px;
+        }
+      }
+      .btn-read-more {
+        background-color: #3d1a6e;
+        color: white;
+        border-radius: 20px;
+      }
+      .info-item {
+        flex-basis: 40%;
+      }
+    }
+  }
+  .optional {
+    margin-top: 150px;
+    margin-bottom: 100px;
+    .title {
+      font-size: 48px;
+      font-weight: 300;
+      text-align: center;
+      color: #3d1a6e;
+    }
+    .description {
+      font-weight: 300;
+      font-size: 14px;
+      max-width: 740px;
+      text-align: center;
+      margin: auto;
+    }
+    .list-option {
+      margin-top: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .option {
+        text-align: center;
+
+        max-width: 300px;
+        .item-icon {
+          width: 50%;
+        }
+        .item-title {
+          color: #3d1a6e;
+          font-weight: 600;
+          font-size: 20px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+  .footer {
+    background-color: #3d1a6e;
+    width: 100%;
+    margin: auto;
+    @media (max-width: 820px) {
+      padding: 0 20px;
+    }
+    .info-footer {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    .container {
+      max-width: 300px;
+    }
+    .title-footer {
+      color: yellow;
+      margin-top: 30px;
+    }
+    .icon-footer {
+      color: white;
+      font-size: 40px;
+      margin-right: 10px;
+    }
+    .store-app {
+      max-width: 130px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+    }
+    .link-footer {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        color: rgb(160, 68, 84);
+      }
+    }
+  }
+}
+.my-container {
+  max-width: 1200px;
+  margin: auto;
+  @media (max-width: 820px) {
+    padding: 0 20px;
+  }
+}
+hr {
+  border: none;
+  height: 2px;
+  width: 200px;
+  background-color: yellow; /* Modern Browsers */
+}
