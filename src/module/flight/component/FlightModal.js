@@ -3,13 +3,11 @@ import { DialogContent, TextField, Grid, MenuItem } from "@material-ui/core";
 import { ClearRounded } from "@material-ui/icons";
 import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
-import {
-  DatePicker,
-  TimePicker,
-  LocalizationProvider,
-} from "@material-ui/pickers";
+import { LocalizationProvider } from "@material-ui/pickers";
 import MomentAdapter from "@material-ui/pickers/adapter/moment";
 import { FORMAT_DD_MM_YYYY } from "@/constants/dateTime";
+import ControlDatePicker from "@/components/ControlDatePicker";
+import ControlTimePicker from "@/components/ControlTimePicker";
 
 const FlightModal = ({
   onClose,
@@ -18,7 +16,7 @@ const FlightModal = ({
   onSubmit,
   airportList = [],
 }) => {
-  const [formValue, setFormValue] = useState({});
+  const [formValue, setFormValue] = useState({ dateStar: "", timeStar: "" });
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -33,13 +31,23 @@ const FlightModal = ({
   };
 
   const handleChangeForm = (key) => (e) => {
-    setFormValue({ ...formValue, [key]: e.target.value });
+    let value;
+    switch (key) {
+      case "dateStar":
+      case "timeStar":
+        value = e;
+        break;
+      default:
+        value = e.target.value;
+        break;
+    }
+    setFormValue({ ...formValue, [key]: value });
   };
 
   return (
     <ModalPage>
       <DialogContent>
-        <div className="header">
+        <div className="modal-header">
           {typeModal === TYPE_MODAL.Create && "New Flight"}
           {typeModal === TYPE_MODAL.Edit && selectedItem.name}
           <ClearRounded
@@ -47,7 +55,7 @@ const FlightModal = ({
             onClick={onClose}
           />
         </div>
-        <div className="body">
+        <div className="modal-body">
           <LocalizationProvider dateAdapter={MomentAdapter}>
             <Grid container spacing={2} style={{ marginTop: 10 }}>
               <Grid item xs={6}>
@@ -90,40 +98,20 @@ const FlightModal = ({
                   ))}
                 </TextField>
               </Grid>
-              <Grid item xs={6}>
-                <DatePicker
-                  value={formValue.dateStar}
-                  onChange={handleChangeForm("dateStar")}
-                  disablePast
-                  inputFormat={FORMAT_DD_MM_YYYY}
-                  renderInput={(props) => (
-                    <TextField
-                      {...props}
-                      label="Start date"
-                      style={{ width: "100%", marginTop: 10 }}
-                      error={errors.dateStar}
-                      helperText={errors.dateStar}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TimePicker
-                  clearable
-                  label="Start Time"
-                  value={formValue.timeStar}
-                  onChange={handleChangeForm("timeStar")}
-                  views={["hours", "minutes"]}
-                  renderInput={(props) => (
-                    <TextField
-                      {...props}
-                      style={{ width: "100%", marginTop: 10 }}
-                      error={errors.timeStar}
-                      helperText={errors.timeStar}
-                    />
-                  )}
-                />
-              </Grid>
+              <ControlDatePicker
+                value={formValue.dateStar}
+                onChange={handleChangeForm("dateStar")}
+                label="Start Date"
+                disablePast
+                inputFormat={FORMAT_DD_MM_YYYY}
+                error={errors.dateStar}
+              />
+              <ControlTimePicker
+                label="Start Time"
+                value={formValue.timeStar}
+                onChange={handleChangeForm("timeStar")}
+                error={errors.timeStar}
+              />
               <Grid item xs={6}>
                 <TextField
                   fullWidth

@@ -16,10 +16,11 @@ import { flightColumn } from "../constants";
 import { TYPE_MODAL } from "@/constants/modal";
 import FightModal from "./FlightModal";
 import DeleteModal from "@/components/DeleteModal";
-
-const sampleData = [{ name: "AA A A", date: "03/18/2021" }];
+import { useSelector } from "react-redux";
 
 const FlightManagement = () => {
+  const { list } = useSelector((state) => state.flight);
+
   const [selectedItem, setSelectedItem] = useState({});
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,13 +75,19 @@ const FlightManagement = () => {
       </Menu>
       <TableContainer
         title="Flight Management"
-        data={sampleData}
+        data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
         renderRow={(row) => (
           <>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.date}</TableCell>
+            <TableCell>{row.flightCode}</TableCell>
+            <TableCell>{row.airportFrom}</TableCell>
+            <TableCell>{row.airportTo}</TableCell>
+            <TableCell>{row.dateStar}</TableCell>
+            <TableCell>{row.timeStar}</TableCell>
+            <TableCell>{row.vipPrice}</TableCell>
+            <TableCell>{row.normalPrice}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {
