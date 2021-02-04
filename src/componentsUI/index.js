@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { DialogActions } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
 export const ButtonEnhance = styled.div`
   height: 40px;
@@ -12,12 +13,12 @@ export const ButtonEnhance = styled.div`
   text-align: center;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "14px")};
   font-weight: 600;
-  padding: 10px 16px;
-  color: ${(props) => (props.color ? props.color : "white")}
+  padding: 11px 16px;
+  color: ${(props) => (props.color ? props.color : "white")};
   &:hover {
     background-color: ${(props) =>
-      props.backgroundHover ? props.backgroundHover : "#94347c"}
-  };
+      props.backgroundHover ? props.backgroundHover : "#94347c"};
+  }
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   margin: 5px;
   border: ${(props) => (props.border ? props.border : "none")};
@@ -34,14 +35,14 @@ export const ModalPage = styled.div`
       padding-top: 0;
     }
   }
-  .header {
+  .modal-header {
     padding: 20px;
     font-size: 18px;
     font-weight: 600;
     color: #192637;
     border-bottom: 1px solid rgb(202, 207, 211);
   }
-  .body {
+  .modal-body {
     padding: 0 20px 20px 20px;
   }
 `;
@@ -51,4 +52,23 @@ export const ModalFooter = styled(DialogActions)`
   padding: 10px 0px;
 `;
 
-export const PaperWrapped = styled.div``;
+export const PaperWrapped = styled(Paper)`
+  .table-container-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .btn-group {
+      display: flex;
+    }
+  }
+  .search-container {
+    width: 50%;
+  }
+  .MuiTableCell-body {
+    vertical-align: middle;
+  }
+`;

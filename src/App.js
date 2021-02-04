@@ -2,6 +2,8 @@ import React from "react";
 import "./index.css";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Header, Homepage, Login, Signup } from "./components";
+import FlightManagement from "@/module/flight/component";
+// import Airport from "@/module/airport/component";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -46,8 +48,9 @@ const AdminRoute = ({ component: Component, restricted, ...rest }) => {
 function App() {
   return (
     <div>
-      <Header />
-      <Login />
+      {/* <Header />
+      <Login /> */}
+      <FlightManagement />
     </div>
   );
 }

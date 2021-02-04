@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Table,
-  Paper,
   TableContainer as MUTableContainer,
   TableBody,
-  TablePagination,
   Typography,
   TableRow,
-  IconButton,
-  Grid,
-  Button,
   Input,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Search } from "@material-ui/icons";
 import { ToolsBar } from "./styled";
+import { ButtonEnhance, PaperWrapped } from "@/componentsUI";
 
 const useStyles = makeStyles({
   paper: {
@@ -48,12 +44,6 @@ const useStyles = makeStyles({
     color: "#8F9BA9",
     margin: 0,
   },
-  btn: {
-    margin: 5,
-    paddingLeft: 40,
-    paddingRight: 40,
-    color: "primary",
-  },
 });
 
 const TableContainer = ({
@@ -71,22 +61,13 @@ const TableContainer = ({
 }) => {
   const classes = useStyles();
   return (
-    <Paper className={classes.paper}>
+    <PaperWrapped className={classes.paper}>
       <MUTableContainer>
         <div className="table-container-header">
-          <Typography
-            style={{
-              fontSize: 18,
-              fontWeight: 600,
-            }}
-          >
-            {title}
-          </Typography>
-          <div style={{ display: "flex" }}>
+          <Typography className="title">{title}</Typography>
+          <div className="btn-group">
             {onAddNew && (
-              <Button className={classes.btn} onClick={onAddNew}>
-                {txtBtnAddNew}
-              </Button>
+              <ButtonEnhance onClick={onAddNew}>{txtBtnAddNew}</ButtonEnhance>
             )}
             {customButtons}
           </div>
@@ -100,6 +81,7 @@ const TableContainer = ({
                 onChange={(e) => {
                   setSearchKey(e.target.value);
                 }}
+                fullWidth
                 placeholder="Search..."
                 prefix={
                   <Search
@@ -136,7 +118,7 @@ const TableContainer = ({
           <p className={classes.descTxtTable}>{noDataHelperText}</p>
         </div>
       )}
-    </Paper>
+    </PaperWrapped>
   );
 };
 

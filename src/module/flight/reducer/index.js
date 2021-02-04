@@ -1,7 +1,7 @@
-import flightDispatcher from "../action/banner";
+import flightDispatcher from "../action";
 
 const initialState = {
-  list: [],
+  list: [{ name: "AA A A", date: "03/18/2021" }],
 };
 
 const flightReducer = flightDispatcher(initialState, {
