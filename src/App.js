@@ -1,7 +1,13 @@
 import React from "react";
 import "./index.css";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { Header, Homepage, Login, Signup } from "./components";
+import {
+  Header,
+  Homepage,
+  Login,
+  Signup,
+  TableHistoryTicket,
+} from "./components";
 import FlightManagement from "@/module/flight/component";
 // import Airport from "@/module/airport/component";
 
@@ -48,9 +54,7 @@ const AdminRoute = ({ component: Component, restricted, ...rest }) => {
 function App() {
   return (
     <div>
-      {/* <Header />
-      <Login /> */}
-      <FlightManagement />
+      <TableHistoryTicket />
     </div>
   );
 }
