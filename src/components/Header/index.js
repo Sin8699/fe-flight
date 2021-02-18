@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./style.scss";
-import Profile from "../Profile";
 
 const Header = () => {
   return (
@@ -23,7 +22,6 @@ const Header = () => {
                 Sign up
               </a>
             </div>
-            {/* <Profile /> */}
           </div>
         </div>
       </div>
