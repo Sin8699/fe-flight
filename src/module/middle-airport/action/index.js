@@ -7,11 +7,11 @@ const mapDispatchToAC = {
   getData: (search, paging) => async ({ Api, getState }) => {
     let { result, status } = await Api.get(`Banners`);
     if (status === 200) {
-      flightDispatcher.getDataSuccess(result);
+      midAirportDispatcher.getDataSuccess(result);
     }
   },
   setState: (state, value) => ({ state, value }),
 };
 
-const flightDispatcher = synthesize("flight", mapDispatchToAC);
-export default flightDispatcher;
+const midAirportDispatcher = synthesize("middle-airport", mapDispatchToAC);
+export default midAirportDispatcher;

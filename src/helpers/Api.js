@@ -3,7 +3,7 @@ import fetchHelper from "./FetchHelper";
 import { debounced } from "@/utils/commonOperator";
 import authDispatcher from "@/module/auth/action";
 
-export const API_URL = process.env.API_ROOT;
+export const API_URL = process.env.REACT_APP_API_ROOT;
 
 const Api = {
   async get(url, params, headers, showError) {

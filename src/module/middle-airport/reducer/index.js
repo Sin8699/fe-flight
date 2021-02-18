@@ -1,16 +1,16 @@
-import flightDispatcher from "../action/banner";
+import midAirportDispatcher from "../action/banner";
 
 const initialState = {
   list: [],
 };
 
-const flightReducer = flightDispatcher(initialState, {
-  [flightDispatcher.getDataSuccess]: (state, payload) => ({
+const midAirportReducer = midAirportDispatcher(initialState, {
+  [midAirportDispatcher.getDataSuccess]: (state, payload) => ({
     list: payload.data.list,
   }),
-  [flightDispatcher.setState]: (state, payload) => ({
+  [midAirportDispatcher.setState]: (state, payload) => ({
     [payload.state]: payload.value,
   }),
 });
 
-export default flightReducer;
+export default midAirportReducer;

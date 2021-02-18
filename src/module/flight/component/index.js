@@ -17,6 +17,7 @@ import { TYPE_MODAL } from "@/constants/modal";
 import FightModal from "./FlightModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
+import flightDispatcher from "../action";
 
 const FlightManagement = () => {
   const { list } = useSelector((state) => state.flight);
@@ -27,6 +28,10 @@ const FlightManagement = () => {
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
+
+  useEffect(() => {
+    flightDispatcher.getData();
+  }, []);
 
   const onShowModal = (type) => {
     setShowModal(true);

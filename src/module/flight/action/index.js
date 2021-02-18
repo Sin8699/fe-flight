@@ -5,7 +5,8 @@ const mapDispatchToAC = {
     data,
   }),
   getData: (search, paging) => async ({ Api, getState }) => {
-    let { result, status } = await Api.get(`Banners`);
+    console.log('Api: ', Api);
+    let { result, status } = await Api.get(`flight`);
     if (status === 200) {
       flightDispatcher.getDataSuccess(result);
     }
