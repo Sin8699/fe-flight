@@ -2,12 +2,7 @@ import React from "react";
 import "./style.scss";
 import { Button, Paper } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FlightIcon from "@material-ui/icons/Flight";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { Facebook, Twitter, YouTube, Instagram } from "@material-ui/icons";
 
 function Homepage() {
   return (
@@ -140,11 +135,60 @@ const PlanMyTrip = () => {
 };
 
 const Footer = () => {
-  const IconFooter = [
-    "FacebookIcon",
-    "TwitterIcon",
-    "YouTubeIcon",
-    "InstagramIcon",
+  const AboutAIRPORT = [
+    { link: "https://www.google.com/", name: "Company Profile" },
+    { link: "https://www.google.com/", name: "Business Units & Affiliates" },
+    { link: "https://www.google.com/", name: "Star Alliance" },
+    { link: "https://www.google.com/", name: "THAI Cargo" },
+    { link: "https://www.google.com/", name: "Modern Slavery Statement" },
+  ];
+  const OtherBooking = [
+    {
+      link: "https://www.google.com/",
+      name: "Australian Travel Agents Reference",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Charter Flight",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "THAI Flight Simulator Experience",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "AIRPORT shop",
+    },
+  ];
+  const TermsConditions = [
+    {
+      link: "https://www.google.com/",
+      name: "Reservation & Ticketing Terms & Conditions",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Conditions of Contract",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Contract of Carriage",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Optional Services & Fees on Code Share Flights",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Baggage Policy",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Carbon Offset",
+    },
+    {
+      link: "https://www.google.com/",
+      name: "Agency Debit Memo Policy",
+    },
   ];
   return (
     <div className="footer">
@@ -153,16 +197,16 @@ const Footer = () => {
           <p className="title-footer">Follow us</p>
           <div>
             <a href="https://facebook.com" target="_blank">
-              <FacebookIcon className="icon-footer" />
+              <Facebook className="icon-footer" />
             </a>
             <a href="https://twitter.com/" target="_blank">
-              <TwitterIcon className="icon-footer" />
+              <Twitter className="icon-footer" />
             </a>
             <a href="https://youtube.com" target="_blank">
-              <YouTubeIcon className="icon-footer" />
+              <YouTube className="icon-footer" />
             </a>
             <a href="https://www.instagram.com/" target="_blank">
-              <InstagramIcon className="icon-footer" />
+              <Instagram className="icon-footer" />
             </a>
           </div>
           <p className="title-footer">Mobile Application</p>
@@ -183,72 +227,27 @@ const Footer = () => {
         </div>
         <div className="container">
           <p className="title-footer">About AIRPORT</p>
-          <a href="/" className="link-footer">
-            <p>Company Profile</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Business Units & Affiliates</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Star Alliance</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>THAI Cargo</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Modern Slavery Statement</p>
-          </a>
+          {AboutAIRPORT.map((item, i) => (
+            <a key={i} href={item.link} className="link-footer" target="_blank">
+              <p>{item.name}</p>
+            </a>
+          ))}
         </div>
         <div className="container">
           <p className="title-footer">Other Booking</p>
-          <p>
-            <a href="/" className="link-footer">
-              <FlightIcon />
-              Australian Travel Agents Reference
+          {OtherBooking.map((item, i) => (
+            <a key={i} href={item.link} className="link-footer" target="_blank">
+              <p>{item.name}</p>
             </a>
-          </p>
-          <p>
-            <a href="/" className="link-footer">
-              <FlightIcon />
-              Charter Flight
-            </a>
-          </p>
-          <p>
-            <a href="/" className="link-footer">
-              <FlightIcon />
-              THAI Flight Simulator Experience
-            </a>
-          </p>
-          <p>
-            <a href="/" className="link-footer">
-              <ShoppingCartIcon />
-              AIRPORT shop
-            </a>
-          </p>
+          ))}
         </div>
         <div>
           <p className="title-footer">Terms & Conditions</p>
-          <a href="/" className="link-footer">
-            <p>Reservation & Ticketing Terms & Conditions</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Conditions of Contract</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Contract of Carriage</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Optional Services & Fees on Code Share Flights</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Baggage Policy</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Carbon Offset</p>
-          </a>
-          <a href="/" className="link-footer">
-            <p>Agency Debit Memo Policy</p>
-          </a>
+          {TermsConditions.map((item, i) => (
+            <a key={i} href={item.link} className="link-footer" target="_blank">
+              <p>{item.name}</p>
+            </a>
+          ))}
         </div>
       </div>
     </div>

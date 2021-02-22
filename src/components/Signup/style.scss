@@ -1,25 +1,11 @@
 .signup {
-  padding: 90px 0;
-  background-color: #eccef5;
+  padding: 110px 0;
+  background-image: linear-gradient(white, #4169e1);
   height: 100vh;
-  .identity-field {
-    display: flex;
-    align-items: center;
-    padding-right: 13px;
-    @media (max-width: 585px) {
-      flex-direction: column;
-      width: 100%;
-      align-items: end;
-      .identity-id-field {
-        min-width: 180px;
-      }
-    }
-  }
   .paper {
-    color: black;
     background: white;
     border-radius: 30px;
-    padding: 50px;
+    padding: 30px 50px;
     margin-top: 8px;
     display: flex;
     flex-direction: column;
@@ -27,16 +13,8 @@
     max-width: 600px;
     margin: auto;
   }
-  .type-identity {
-    width: 100px;
-    margin-top: 8px;
-  }
-  .identity_issued_date {
-    width: 98% !important;
-    padding-left: 5px !important;
-  }
-  .MuiInputLabel-formControl {
-    left: 5px;
+  .submit {
+    margin-top: 20px;
   }
   .MuiContainer-maxWidthXs {
     @media (min-width: 0) {
