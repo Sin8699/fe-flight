@@ -14,7 +14,7 @@ import MenuAction from "@/components/MenuAction";
 import { renderAction } from "../utils";
 import { flightColumn } from "../constants";
 import { TYPE_MODAL } from "@/constants/modal";
-import FightModal from "./FlightModal";
+import FlightModal from "./FlightModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
 import flightDispatcher from "../action";
@@ -113,7 +113,7 @@ const FlightManagement = () => {
         open={showModal}
         onClose={onCloseModal}
       >
-        <FightModal
+        <FlightModal
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}

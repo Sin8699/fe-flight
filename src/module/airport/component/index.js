@@ -12,20 +12,26 @@ import { MoreVertRounded } from "@material-ui/icons";
 import TableContainer from "@/components/TableContainer";
 import MenuAction from "@/components/MenuAction";
 import { renderAction } from "../utils";
-import { flightColumn } from "../constants";
+import { airportColumn } from "../constants";
 import { TYPE_MODAL } from "@/constants/modal";
-import FightModal from "./FlightModal";
+import AirportModal from "./AirportModal";
 import DeleteModal from "@/components/DeleteModal";
+import { useSelector } from "react-redux";
+import airportDispatcher from "../action";
 
-const sampleData = [{ name: "AA A A", date: "03/18/2021" }];
+const AirportManagement = () => {
+  const { list } = useSelector((state) => state.airport);
 
-const FlightManagement = () => {
   const [selectedItem, setSelectedItem] = useState({});
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
+
+  useEffect(() => {
+    airportDispatcher.getData();
+  }, []);
 
   const onShowModal = (type) => {
     setShowModal(true);
@@ -54,7 +60,7 @@ const FlightManagement = () => {
   const TableHeader = () => (
     <TableHead>
       <TableRow>
-        {flightColumn.map((item) => (
+        {airportColumn.map((item) => (
           <TableCell key={item.stateValue}>{item.label}</TableCell>
         ))}
       </TableRow>
@@ -73,8 +79,8 @@ const FlightManagement = () => {
         {anchorEl && <MenuAction listActions={listActions} />}
       </Menu>
       <TableContainer
-        title="Flight Management"
-        data={sampleData}
+        title="Airport Management"
+        data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
         renderRow={(row) => (
@@ -101,7 +107,7 @@ const FlightManagement = () => {
         open={showModal}
         onClose={onCloseModal}
       >
-        <FightModal
+        <AirportModal
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}
@@ -113,7 +119,7 @@ const FlightManagement = () => {
           selectedItem={selectedItem}
           onClose={() => setDeleteModal(false)}
           onDelete={handleDeleteItem}
-          modalName="Flight"
+          modalName="Airport"
           title={selectedItem.name}
         />
       )}
@@ -121,4 +127,4 @@ const FlightManagement = () => {
   );
 };
 
-export default FlightManagement;
+export default AirportManagement;

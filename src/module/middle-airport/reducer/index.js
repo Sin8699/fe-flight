@@ -1,4 +1,4 @@
-import midAirportDispatcher from "../action/banner";
+import midAirportDispatcher from "../action";
 
 const initialState = {
   list: [],
