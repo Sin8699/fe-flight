@@ -17,11 +17,11 @@ export const flightColumn = [
   },
   {
     label: "Start Date",
-    stateValue: "dateStart",
+    stateValue: "dateStar",
   },
   {
-    label: "End Date",
-    stateValue: "dateEnd",
+    label: "Start Time",
+    stateValue: "timeStar",
   },
   {
     label: "Vip Price",

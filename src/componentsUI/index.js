@@ -7,17 +7,17 @@ export const ButtonEnhance = styled.div`
   min-width: ${(props) => (props.minWidth ? props.minWidth : "160px")};
   border-radius: 20px;
   background-color: ${(props) =>
-    props.background ? props.background : "#ad5e99"};
+    props.background ? props.background : "#442b67"};
   transition: all 0.5s;
   cursor: ${(props) => (props.disabled ? "no-drop" : "pointer")};
   text-align: center;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "14px")};
   font-weight: 600;
-  padding: 11px 16px;
+  padding: 12px 16px;
   color: ${(props) => (props.color ? props.color : "white")};
   &:hover {
     background-color: ${(props) =>
-      props.backgroundHover ? props.backgroundHover : "#94347c"};
+      props.backgroundHover ? props.backgroundHover : "#3a2b4e"};
   }
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   margin: 5px;

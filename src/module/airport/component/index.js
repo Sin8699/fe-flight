@@ -44,6 +44,12 @@ const AirportManagement = () => {
     setTypeModal(null);
   };
 
+  const handleSubmit = (data) => {
+    if (typeModal === TYPE_MODAL.Create)
+      airportDispatcher.createData(data, onCloseModal);
+    else airportDispatcher.updateData(data, onCloseModal);
+  };
+
   const handleDeleteItem = () => {};
 
   const listActions = renderAction({
@@ -111,6 +117,7 @@ const AirportManagement = () => {
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}
+          onSubmit={handleSubmit}
         />
       </Dialog>
       {deleteModal && (

@@ -3,4 +3,5 @@ export const TYPE_MODAL = {
   Edit: "Edit",
   View: "View",
   Delete: "Delete",
+  BookTicket: "BookTicket",
 };

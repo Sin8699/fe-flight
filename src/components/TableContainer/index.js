@@ -54,7 +54,7 @@ const TableContainer = ({
   noDataHelperText,
   ToolbarComponent,
   searchKey,
-  setSearchKey,
+  setSearchKey = () => {},
   header: Header,
   renderRow,
   data,

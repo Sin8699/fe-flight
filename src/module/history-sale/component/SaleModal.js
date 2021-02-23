@@ -3,14 +3,9 @@ import { DialogContent, TextField, Grid } from "@material-ui/core";
 import { ClearRounded } from "@material-ui/icons";
 import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
+import validateData from "@/helpers/validationSchema";
 
-const AirportModal = ({
-  onClose,
-  selectedItem,
-  typeModal,
-  onSubmit,
-  airportList = [],
-}) => {
+const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   const [formValue, setFormValue] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -20,6 +15,7 @@ const AirportModal = ({
 
   const handleSubmit = async () => {
     try {
+      await validateData("airportSchema", formValue, (data) => onSubmit(data));
     } catch (errs) {
       setErrors(errs);
     }
@@ -50,6 +46,7 @@ const AirportModal = ({
                 label="Name"
                 value={formValue.name}
                 onChange={handleChangeForm("name")}
+                disabled={typeModal === TYPE_MODAL.View}
               />
             </Grid>
             <Grid item xs={6}>
@@ -60,6 +57,7 @@ const AirportModal = ({
                 label="Address"
                 value={formValue.address}
                 onChange={handleChangeForm("address")}
+                disabled={typeModal === TYPE_MODAL.View}
               />
             </Grid>
           </Grid>

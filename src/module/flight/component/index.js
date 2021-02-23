@@ -18,9 +18,11 @@ import FlightModal from "./FlightModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
 import flightDispatcher from "../action";
+import airportDispatcher from "@/module/airport/action";
 
 const FlightManagement = () => {
   const { list } = useSelector((state) => state.flight);
+  const { list: airportList } = useSelector((state) => state.airport);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -31,6 +33,7 @@ const FlightManagement = () => {
 
   useEffect(() => {
     flightDispatcher.getData();
+    airportDispatcher.getData();
   }, []);
 
   const onShowModal = (type) => {
@@ -44,12 +47,28 @@ const FlightManagement = () => {
     setTypeModal(null);
   };
 
+  const handleSubmit = (data) => {
+    if (typeModal === TYPE_MODAL.Create)
+      flightDispatcher.createData(data, onCloseModal);
+    else flightDispatcher.updateData(data, onCloseModal);
+  };
+
   const handleDeleteItem = () => {};
 
   const listActions = renderAction({
+    onViewDetail: () => {
+      setAnchorEl(null);
+      setTypeModal(TYPE_MODAL.View);
+      setShowModal(true);
+    },
     onEdit: () => {
       setAnchorEl(null);
       setTypeModal(TYPE_MODAL.Edit);
+      setShowModal(true);
+    },
+    onBookTicket: () => {
+      setAnchorEl(null);
+      setTypeModal(TYPE_MODAL.BookTicket);
       setShowModal(true);
     },
     onDelete: () => {
@@ -79,7 +98,7 @@ const FlightManagement = () => {
         {anchorEl && <MenuAction listActions={listActions} />}
       </Menu>
       <TableContainer
-        title="Flight Management"
+        title="Flight"
         data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
@@ -89,8 +108,8 @@ const FlightManagement = () => {
             <TableCell>{row.flightCode}</TableCell>
             <TableCell>{row.airportFrom}</TableCell>
             <TableCell>{row.airportTo}</TableCell>
-            <TableCell>{row.dateStar}</TableCell>
-            <TableCell>{row.timeStar}</TableCell>
+            <TableCell>{row.dateStart}</TableCell>
+            <TableCell>{row.dateEnd}</TableCell>
             <TableCell>{row.vipPrice}</TableCell>
             <TableCell>{row.normalPrice}</TableCell>
             <TableCell align="right">
@@ -117,6 +136,8 @@ const FlightManagement = () => {
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}
+          airportList={airportList}
+          onSubmit={handleSubmit}
         />
       </Dialog>
       {deleteModal && (

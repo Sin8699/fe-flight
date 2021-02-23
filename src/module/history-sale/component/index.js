@@ -12,15 +12,15 @@ import { MoreVertRounded } from "@material-ui/icons";
 import TableContainer from "@/components/TableContainer";
 import MenuAction from "@/components/MenuAction";
 import { renderAction } from "../utils";
-import { midAirportColumn } from "../constants";
+import { saleColumn } from "../constants";
 import { TYPE_MODAL } from "@/constants/modal";
-import MiddleAirportModal from "./MiddleAirportModal";
+import SaleModal from "./SaleModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
-import midAirportDispatcher from "../action";
+import saleDispatcher from "../action";
 
-const MiddleAirportManagement = () => {
-  const { list } = useSelector((state) => state.middleAirport);
+const SaleManagement = () => {
+  const { list } = useSelector((state) => state.sale);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -30,7 +30,7 @@ const MiddleAirportManagement = () => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   useEffect(() => {
-    midAirportDispatcher.getData();
+    saleDispatcher.getData();
   }, []);
 
   const onShowModal = (type) => {
@@ -46,8 +46,8 @@ const MiddleAirportManagement = () => {
 
   const handleSubmit = (data) => {
     if (typeModal === TYPE_MODAL.Create)
-      midAirportDispatcher.createData(data, onCloseModal);
-    else midAirportDispatcher.updateData(data, onCloseModal);
+      saleDispatcher.createData(data, onCloseModal);
+    else saleDispatcher.updateData(data, onCloseModal);
   };
 
   const handleDeleteItem = () => {};
@@ -66,7 +66,7 @@ const MiddleAirportManagement = () => {
   const TableHeader = () => (
     <TableHead>
       <TableRow>
-        {midAirportColumn.map((item) => (
+        {saleColumn.map((item) => (
           <TableCell key={item.stateValue}>{item.label}</TableCell>
         ))}
       </TableRow>
@@ -85,7 +85,7 @@ const MiddleAirportManagement = () => {
         {anchorEl && <MenuAction listActions={listActions} />}
       </Menu>
       <TableContainer
-        title="Middle Airport Management"
+        title="History Sale"
         data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
@@ -108,12 +108,12 @@ const MiddleAirportManagement = () => {
       />
       <Dialog
         disableEnforceFocus
-        maxWidth="md"
+        maxWidth="lg"
         fullWidth
         open={showModal}
         onClose={onCloseModal}
       >
-        <MiddleAirportModal
+        <SaleModal
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}
@@ -126,7 +126,7 @@ const MiddleAirportManagement = () => {
           selectedItem={selectedItem}
           onClose={() => setDeleteModal(false)}
           onDelete={handleDeleteItem}
-          modalName="MiddleAirport"
+          modalName="Sale"
           title={selectedItem.name}
         />
       )}
@@ -134,4 +134,4 @@ const MiddleAirportManagement = () => {
   );
 };
 
-export default MiddleAirportManagement;
+export default SaleManagement;

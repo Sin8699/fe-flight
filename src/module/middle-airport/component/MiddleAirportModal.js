@@ -15,7 +15,9 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
 
   const handleSubmit = async () => {
     try {
-      await validateData("airportSchema", formValue, (data) => onSubmit(data));
+      await validateData("middleAirportSchema", formValue, (data) =>
+        onSubmit(data)
+      );
     } catch (errs) {
       setErrors(errs);
     }
@@ -41,23 +43,31 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.name}
-                helperText={errors.name}
-                label="Name"
-                value={formValue.name}
-                onChange={handleChangeForm("name")}
-                disabled={typeModal === TYPE_MODAL.View}
+                error={errors.flightCode}
+                helperText={errors.flightCode}
+                label="Flight Code"
+                value={formValue.flightCode}
+                onChange={handleChangeForm("flightCode")}
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.address}
-                helperText={errors.address}
-                label="Address"
-                value={formValue.address}
-                onChange={handleChangeForm("address")}
-                disabled={typeModal === TYPE_MODAL.View}
+                error={errors.timeDelay}
+                helperText={errors.timeDelay}
+                label="timeDelay"
+                value={formValue.timeDelay}
+                onChange={handleChangeForm("timeDelay")}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                error={errors.order}
+                helperText={errors.order}
+                label="order"
+                value={formValue.order}
+                onChange={handleChangeForm("order")}
               />
             </Grid>
           </Grid>
