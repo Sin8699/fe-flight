@@ -18,6 +18,7 @@ import {
   Phone,
   Person,
 } from "@material-ui/icons";
+import authDispatcher from "../action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,13 @@ function Profile() {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
+  useEffect(() => {
+    authDispatcher.getInforUser((result) => {
+      const userInfor = result;
+      console.log("userInfor: ", userInfor);
+    });
+  }, []);
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -57,7 +65,10 @@ function Profile() {
     }
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    authDispatcher.logout();
+    window.location.replace("/");
+  };
 
   const prevOpen = useRef(open);
   useEffect(() => {
@@ -67,6 +78,7 @@ function Profile() {
 
     prevOpen.current = open;
   }, [open]);
+
   return (
     <div className={classes.root}>
       <Button
@@ -100,19 +112,17 @@ function Profile() {
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem>
-                    Signed in as <br /> Email@email.com
+                    Signed in as <br />
                   </MenuItem>
                   <MenuItem>
                     <Person />
-                    Full Name
                   </MenuItem>
                   <MenuItem>
                     <Phone />
-                    0903974567
                   </MenuItem>
                   <MenuItem>
                     <MonetizationOn />
-                    Account Balance <br /> 100.000 VNĐ
+                    Account Balance <br />
                   </MenuItem>
                   <MenuItem>
                     <Help />

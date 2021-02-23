@@ -38,12 +38,16 @@
     .link-btn {
       color: white;
       text-decoration: none;
+      border-radius: 10px;
       padding: 10px 15px;
       cursor: pointer;
       &:hover {
         background: white;
         color: #3d1a6e;
       }
+    }
+    .sign-up {
+      border: 2px solid #ffffff;
     }
   }
 }

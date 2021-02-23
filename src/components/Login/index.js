@@ -1,12 +1,6 @@
 import React from "react";
 import "./style.scss";
-import {
-  Avatar,
-  Button,
-  TextField,
-  Typography,
-  Container,
-} from "@material-ui/core";
+import { Avatar, Button, TextField, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import authDispatcher from "../../module/auth/action";
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./style.scss";
+import Profile from "../../module/auth/component/profile";
+import { loadFromStorage } from "../../utils/storage";
 
 const Header = () => {
+  const user = loadFromStorage("user");
   return (
     <div className="header">
       <div className="header-nav">
@@ -13,15 +16,18 @@ const Header = () => {
             alt="logo"
           />
           <div className="not-responsive">
-            <div>
-              <a href="/login" className="link-btn">
-                Log in
-              </a>
-              <a>/</a>
-              <a href="/register" className="link-btn">
-                Sign up
-              </a>
-            </div>
+            {!user ? (
+              <div>
+                <a href="/login" className="link-btn">
+                  Sign in
+                </a>
+                <a href="/register" className="link-btn sign-up">
+                  Sign up
+                </a>
+              </div>
+            ) : (
+              <Profile />
+            )}
           </div>
         </div>
       </div>
