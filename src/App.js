@@ -54,10 +54,10 @@ const AdminRoute = ({ component: Component, restricted, ...rest }) => {
 function App() {
   return (
     <div>
-      {/* <Header />
-      <Login /> */}
+      <Header />
+      <Login />
       {/* <Homepage /> */}
-      <FlightManagement />
+      {/* <FlightManagement /> */}
     </div>
   );
 }

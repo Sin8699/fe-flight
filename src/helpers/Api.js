@@ -90,7 +90,7 @@ const request = async (
       }, 3000);
       return { status };
     }
-    let result = data instanceof Blob ? data : data.data;
+    let result = data;
 
     if (SUCCESS_CODE.includes(status)) return { result, status };
 

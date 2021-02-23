@@ -8,9 +8,18 @@ import {
   Container,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import authDispatcher from "../../module/auth/action";
 
 function Login() {
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {
+      email: formData.get("email"),
+      hashPassword: formData.get("password"),
+    };
+    authDispatcher.login(data);
+  };
   return (
     <div className="login">
       <div className="container">
@@ -30,8 +39,8 @@ function Login() {
               margin="normal"
               required
               fullWidth
-              label="Username"
-              name="username"
+              label="Email"
+              name="email"
             />
             <TextField
               margin="normal"
