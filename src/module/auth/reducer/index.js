@@ -6,7 +6,7 @@ const initialState = {
   expireOn: "",
   refreshToken: "",
   tokenType: "Bearer",
-  userInfo: {},
+  role: "",
 };
 
 const authReducer = authDispatcher(initialState, {

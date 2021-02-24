@@ -4,7 +4,7 @@ import Profile from "../../module/auth/component/profile";
 import { loadFromStorage } from "../../utils/storage";
 
 const Header = () => {
-  const user = loadFromStorage("user");
+  const user = loadFromStorage("auth");
   return (
     <div className="header">
       <div className="header-nav">

@@ -1,24 +1,19 @@
 import { synthesize } from "redux-dispatcher";
-import toastr from "toastr";
-import fetchHelper from "../../../helpers/FetchHelper";
-import { saveToStorage, removeFromStorage } from "../../../utils/storage";
+import fetchHelper from "@/helpers/FetchHelper";
+import { saveToStorage, removeFromStorage } from "@/utils/storage";
 
 const mapDispatchToAC = {
   loginSuccess: (result) => ({ result }),
-  login: (data) => async ({ Api }) => {
+  login: (data, callback) => async ({ Api }) => {
     let { result, status } = await Api.post(`user/login`, data);
     if (status === 200) {
-      saveToStorage("user", result);
+      saveToStorage("auth", result);
       fetchHelper.addDefaultHeader("Authorization", `Bearer ${result.token}`);
       authDispatcher.loginSuccess({
         accessToken: result.token,
         email: result.email,
       });
-      // authDispatcher.getInforUser((result) => {
-      //   console.log("result: ", result);
-      // });
-      console.log("fetchHelper: ", fetchHelper);
-      window.location.replace("/");
+      callback && callback();
     }
   },
   getInforUser: (callback) => async ({ Api }) => {

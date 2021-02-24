@@ -1,8 +1,10 @@
 export const urlLabel = {
-  flight: "flight",
-  airport: "airport",
+  flightManagement: "flight",
+  airportManagement: "airport",
   middleAirport: "middle-airport",
   saleHistory: "sale-history",
+  login: "login",
+  signUp: "register",
 };
 
 export const ROLE_PERMISSION = {
