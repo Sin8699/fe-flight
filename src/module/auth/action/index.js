@@ -10,7 +10,14 @@ const mapDispatchToAC = {
     if (status === 200) {
       saveToStorage("user", result);
       fetchHelper.addDefaultHeader("Authorization", `Bearer ${result.token}`);
-      toastr.success("Login success");
+      authDispatcher.loginSuccess({
+        accessToken: result.token,
+        email: result.email,
+      });
+      // authDispatcher.getInforUser((result) => {
+      //   console.log("result: ", result);
+      // });
+      console.log("fetchHelper: ", fetchHelper);
       window.location.replace("/");
     }
   },
