@@ -11,7 +11,7 @@ const mapDispatchToAC = {
       saveToStorage("user", result);
       fetchHelper.addDefaultHeader("Authorization", `Bearer ${result.token}`);
       toastr.success("Login success");
-      window.location.replace("/");
+      // window.location.replace("/");
     }
   },
   getInforUser: (callback) => async ({ Api }) => {
