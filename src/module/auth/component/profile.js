@@ -41,7 +41,7 @@ function Profile() {
   const anchorRef = useRef(null);
 
   useEffect(() => {
-    const { accessToken } = loadFromStorage("auth") || {};
+    const { accessToken } = loadFromStorage("user") || {};
 
     if (accessToken) {
       authDispatcher.getInforUser((result) => {

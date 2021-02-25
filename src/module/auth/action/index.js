@@ -7,26 +7,26 @@ const mapDispatchToAC = {
   login: (data, callback) => async ({ Api }) => {
     let { result, status } = await Api.post(`user/login`, data);
     if (status === 200) {
-      saveToStorage("auth", result);
-      fetchHelper.addDefaultHeader("Authorization", `Bearer ${result.token}`);
-      authDispatcher.loginSuccess({
+      const user = {
         accessToken: result.token,
         email: result.email,
-      });
+      };
+      saveToStorage("user", user);
+      fetchHelper.addDefaultHeader("Authorization", `Bearer ${result.token}`);
+      authDispatcher.loginSuccess(user);
       callback && callback();
     }
   },
   getInforUser: (callback) => async ({ Api }) => {
     let { result, status } = await Api.get(`user`);
     if (status === 200) {
-      console.log("result: ", result);
+      authDispatcher.getInfoSuccess(result);
       callback && callback(result);
     }
   },
+  getInfoSuccess: (user) => ({ user }),
   logoutSuccess: () => ({}),
-  //logout: (isTokenExpired = false) => async ({ Api }) => {
   logout: () => async ({ Api }) => {
-    //!isTokenExpired && authDispatcher.deleteNotifyToken({ deviceId: "" });
     removeFromStorage("user");
     fetchHelper.addDefaultHeader("Authorization", ``);
     authDispatcher.logoutSuccess();

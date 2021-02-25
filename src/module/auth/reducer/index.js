@@ -6,7 +6,7 @@ const initialState = {
   expireOn: "",
   refreshToken: "",
   tokenType: "Bearer",
-  role: "",
+  userInfo: {},
 };
 
 const authReducer = authDispatcher(initialState, {
@@ -15,6 +15,13 @@ const authReducer = authDispatcher(initialState, {
   }),
   [authDispatcher.loginSuccess]: (state, payload) => ({
     ...payload.result,
+  }),
+  [authDispatcher.logoutSuccess]: (state, payload) => ({
+    accessToken: "",
+    userInfo: {},
+  }),
+  [authDispatcher.getInfoSuccess]: (state, payload) => ({
+    userInfo: payload.user,
   }),
 });
 

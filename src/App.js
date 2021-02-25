@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./index.css";
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { ROLE_PERMISSION, urlLabel } from "@/constants/permission";
 import { loadFromStorage } from "@/utils/storage";
-import fetchHelper from "@/helpers/FetchHelper";
 import {
   Header,
   Homepage,
@@ -15,15 +14,13 @@ import FlightManagement from "@/module/flight/component";
 import AirportManagement from "@/module/airport/component";
 import MiddleAirport from "@/module/middle-airport/component";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { accessToken } = loadFromStorage("auth") || {};
+const NormalRoute = ({ component: Component, ...rest }) => {
+  return <Route {...rest} render={(props) => <Component {...props} />} />;
+};
 
-  useEffect(() => {
-    if (accessToken) {
-      fetchHelper.addDefaultHeader("Authorization", `Bearer ${accessToken}`);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { accessToken } = loadFromStorage("user") || {};
+
   return (
     <Route
       {...rest}
@@ -35,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const PublicRoute = ({ component: Component, ...rest }) => {
-  const { accessToken } = loadFromStorage("auth") || {};
+  const { accessToken } = loadFromStorage("user") || {};
   return (
     <Route
       {...rest}
@@ -47,14 +44,8 @@ const PublicRoute = ({ component: Component, ...rest }) => {
 };
 
 const AdminRoute = ({ component: Component, restricted, ...rest }) => {
-  const { accessToken, role } = loadFromStorage("auth") || {};
+  const { accessToken, role } = loadFromStorage("user") || {};
 
-  useEffect(() => {
-    if (accessToken) {
-      fetchHelper.addDefaultHeader("Authorization", `Bearer ${accessToken}`);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <Route
       {...rest}
@@ -90,8 +81,8 @@ function App() {
             name="Register"
             component={Signup}
           />
-          <PrivateRoute path="/" exact component={Homepage} />
-          <AdminRoute
+          <NormalRoute path="/" exact name="Homepage" component={Homepage} />
+          <PrivateRoute
             path={`/${urlLabel.flightManagement}`}
             exact
             component={FlightManagement}

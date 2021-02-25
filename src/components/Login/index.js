@@ -12,7 +12,7 @@ function Login() {
       email: formData.get("email"),
       hashPassword: formData.get("password"),
     };
-    authDispatcher.login(data);
+    authDispatcher.login(data, () => window.location.replace("/"));
   };
   return (
     <div className="login">
