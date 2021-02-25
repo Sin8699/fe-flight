@@ -13,6 +13,9 @@ const authReducer = authDispatcher(initialState, {
   [authDispatcher.setState]: (state, payload) => ({
     [payload.state]: payload.value,
   }),
+  [authDispatcher.loginSuccess]: (state, payload) => ({
+    ...payload.result,
+  }),
 });
 
 export default authReducer;
