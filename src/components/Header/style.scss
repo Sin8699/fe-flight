@@ -1,10 +1,12 @@
+$main-color: #442b67;
+
 .header {
   position: fixed;
   padding: 7px 0;
   left: 0;
   top: 0;
   width: 100%;
-  background-color: #3d1a6e;
+  background-color: $main-color;
   color: white;
   z-index: 100;
   .header-nav {
@@ -40,10 +42,11 @@
       text-decoration: none;
       border-radius: 10px;
       padding: 10px 15px;
+      margin-right: 10px;
       cursor: pointer;
       &:hover {
         background: white;
-        color: #3d1a6e;
+        color: $main-color;
       }
     }
     .sign-up {
