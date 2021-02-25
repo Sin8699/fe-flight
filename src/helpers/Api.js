@@ -1,7 +1,5 @@
-import toastr from "toastr";
 import fetchHelper from "./FetchHelper";
-import { debounced } from "@/utils/commonOperator";
-import authDispatcher from "@/module/auth/action";
+import { loadFromStorage } from "@/utils/storage";
 
 export const API_URL = process.env.REACT_APP_API_ROOT;
 
@@ -70,6 +68,9 @@ const request = async (
   }
 ) => {
   try {
+    //add header
+    const { accessToken } = loadFromStorage("user") || {};
+    fetchHelper.addDefaultHeader("Authorization", `Bearer ${accessToken}`);
     // trim search param
     if (body && typeof body.search === "string")
       body.search = body.search.trim();
@@ -83,24 +84,24 @@ const request = async (
     const [data, status] = await fetchHelper.fetch(url, config, isFormSubmit);
 
     // eslint-disable-next-line no-useless-concat
-    if (status === UNAUTHORIZED_CODE) {
-      debounced(() => {
-        authDispatcher.logout(true);
-        toastr.error("Token was expired!");
-      }, 3000);
-      return { status };
-    }
+    // if (status === UNAUTHORIZED_CODE) {
+    //   debounced(() => {
+    //     authDispatcher.logout(true);
+    //     toastr.error("Token was expired!");
+    //   }, 3000);
+    //   return { status };
+    // }
     let result = data;
 
     if (SUCCESS_CODE.includes(status)) return { result, status };
 
-    showError &&
-      toastr.error(
-        data.Message ||
-          data.message ||
-          (status === 403 && "Permission denied") ||
-          "Something went wrong"
-      );
+    // showError &&
+    //   toastr.error(
+    //     data.Message ||
+    //       data.message ||
+    //       (status === 403 && "Permission denied") ||
+    //       "Something went wrong"
+    //   );
     return { result: null, message: data.message, status };
   } catch (exception) {
     console.log("exception: ", exception);

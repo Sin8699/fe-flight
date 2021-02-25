@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.scss";
 import Profile from "../../module/auth/component/profile";
-import { loadFromStorage } from "../../utils/storage";
+import { loadFromStorage } from "@/utils/storage";
 
 const Header = () => {
   const user = loadFromStorage("user");
+
   return (
     <div className="header">
       <div className="header-nav">

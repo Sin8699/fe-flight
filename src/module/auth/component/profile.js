@@ -19,6 +19,7 @@ import {
   Person,
 } from "@material-ui/icons";
 import authDispatcher from "../action";
+import { loadFromStorage } from "@/utils/storage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +41,14 @@ function Profile() {
   const anchorRef = useRef(null);
 
   useEffect(() => {
-    authDispatcher.getInforUser((result) => {
-      const userInfor = result;
-      console.log("userInfor: ", userInfor);
-    });
+    const { accessToken } = loadFromStorage("user") || {};
+
+    if (accessToken) {
+      authDispatcher.getInforUser((result) => {
+        const userInfor = result;
+        console.log("userInfor: ", userInfor);
+      });
+    }
   }, []);
 
   const handleToggle = () => {

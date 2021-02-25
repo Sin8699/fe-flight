@@ -1,4 +1,4 @@
-export const flightColumn = [
+export const airportColumn = [
   {
     label: "Name",
     stateValue: "name",

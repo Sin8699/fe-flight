@@ -92,7 +92,8 @@ const MiddleAirportManagement = () => {
         renderRow={(row) => (
           <>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.date}</TableCell>
+            <TableCell>{row.address}</TableCell>
+            <TableCell>{row.other}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {
