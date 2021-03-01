@@ -1,5 +1,7 @@
 $main-color: #442b67;
-
+.MuiMenuItem-root {
+  min-width: auto !important;
+}
 .header {
   position: fixed;
   padding: 7px 0;
@@ -36,6 +38,10 @@ $main-color: #442b67;
     .logo {
       cursor: pointer;
       height: 60px;
+    }
+    .link-group {
+      display: flex;
+      align-items: center;
     }
     .link-btn {
       color: white;

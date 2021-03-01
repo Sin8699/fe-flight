@@ -92,7 +92,6 @@ function Signup() {
               fullWidth
               label="Full Name"
               name="fullName"
-              autoFocus
             />
             <TextField
               margin="normal"
