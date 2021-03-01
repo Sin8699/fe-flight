@@ -196,28 +196,52 @@ const Footer = () => {
         <div className="container">
           <p className="title-footer">Follow us</p>
           <div>
-            <a href="https://facebook.com" target="_blank">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Facebook className="icon-footer" />
             </a>
-            <a href="https://twitter.com/" target="_blank">
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Twitter className="icon-footer" />
             </a>
-            <a href="https://youtube.com" target="_blank">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <YouTube className="icon-footer" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Instagram className="icon-footer" />
             </a>
           </div>
           <p className="title-footer">Mobile Application</p>
-          <a href="https://www.apple.com/" target="_blank">
+          <a
+            href="https://www.apple.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="store-app"
               src="images/Available_on_the_App_Store_(black).png"
               alt=""
             />
           </a>
-          <a href="https://play.google.com/" target="_blank">
+          <a
+            href="https://play.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className="store-app"
               src="images/Available_on_the_Google_Play_(black).png"
@@ -228,7 +252,13 @@ const Footer = () => {
         <div className="container">
           <p className="title-footer">About AIRPORT</p>
           {AboutAIRPORT.map((item, i) => (
-            <a key={i} href={item.link} className="link-footer" target="_blank">
+            <a
+              key={i}
+              href={item.link}
+              className="link-footer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <p>{item.name}</p>
             </a>
           ))}
@@ -236,7 +266,13 @@ const Footer = () => {
         <div className="container">
           <p className="title-footer">Other Booking</p>
           {OtherBooking.map((item, i) => (
-            <a key={i} href={item.link} className="link-footer" target="_blank">
+            <a
+              key={i}
+              href={item.link}
+              className="link-footer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <p>{item.name}</p>
             </a>
           ))}
@@ -244,7 +280,13 @@ const Footer = () => {
         <div>
           <p className="title-footer">Terms & Conditions</p>
           {TermsConditions.map((item, i) => (
-            <a key={i} href={item.link} className="link-footer" target="_blank">
+            <a
+              key={i}
+              href={item.link}
+              className="link-footer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <p>{item.name}</p>
             </a>
           ))}

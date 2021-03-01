@@ -8,10 +8,36 @@ import {
   Container,
 } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import authDispatcher from "../../module/auth/action";
 
 function Signup() {
   const [error, setError] = useState(false);
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    if (formData.get("password") === formData.get("confirmPassword")) {
+      const data = {
+        username: formData.get("fullName"),
+        password: formData.get("password"),
+        email: formData.get("email"),
+        fullName: formData.get("fullName"),
+        numberPhone: formData.get("phone"),
+        accountBalance: 0,
+      };
+
+      authDispatcher.register(data, (result) => {
+        if (result?.message === "User created successfully") {
+          const dataLogin = {
+            email: formData.get("email"),
+            hashPassword: formData.get("password"),
+          };
+          authDispatcher.login(dataLogin, () => window.location.replace("/"));
+        }
+      });
+    } else {
+      setError(true);
+    }
+  };
   return (
     <div className="signup">
       <Container component="main" maxWidth="xs">
@@ -27,26 +53,10 @@ function Signup() {
               margin="normal"
               required
               fullWidth
-              label="Full Name"
-              name="fullName"
+              label="Username"
+              name="username"
               autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Phone"
-              name="phone"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Email"
-              name="email"
-              autoComplete="email"
-            />
-
             <TextField
               margin="normal"
               required
@@ -68,6 +78,29 @@ function Signup() {
                 Confirm password does not match with password
               </p>
             )}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Email"
+              name="email"
+              autoComplete="email"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Full Name"
+              name="fullName"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Phone"
+              name="phone"
+            />
             <Button
               type="submit"
               fullWidth

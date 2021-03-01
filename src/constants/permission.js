@@ -5,6 +5,7 @@ export const urlLabel = {
   saleHistory: "sale-history",
   login: "login",
   signUp: "register",
+  forgotPassword: "forgot-password",
 };
 
 export const ROLE_PERMISSION = {

@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     height: "40px",
     color: "white",
   },
+  listIcon: {
+    marginRight: "10px",
+  },
 }));
 
 function Profile() {
@@ -40,13 +43,14 @@ function Profile() {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
+  const [user, setUser] = useState([]);
+
   useEffect(() => {
     const { accessToken } = loadFromStorage("user") || {};
 
     if (accessToken) {
       authDispatcher.getInforUser((result) => {
-        const userInfor = result;
-        console.log("userInfor: ", userInfor);
+        setUser(result);
       });
     }
   }, []);
@@ -117,28 +121,30 @@ function Profile() {
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem>
-                    Signed in as <br />
+                    Signed in as <br /> {user.email}
                   </MenuItem>
                   <MenuItem>
-                    <Person />
+                    <Person className={classes.listIcon} />
+                    {user.fullName}
                   </MenuItem>
                   <MenuItem>
-                    <Phone />
+                    <Phone className={classes.listIcon} />
+                    {user.numberPhone}
                   </MenuItem>
                   <MenuItem>
-                    <MonetizationOn />
-                    Account Balance <br />
+                    <MonetizationOn className={classes.listIcon} />
+                    Account Balance <br /> {user.accountBalance} VND
                   </MenuItem>
                   <MenuItem>
-                    <Help />
+                    <Help className={classes.listIcon} />
                     Help
                   </MenuItem>
                   <MenuItem>
-                    <Settings />
+                    <Settings className={classes.listIcon} />
                     Setting
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
-                    <ExitToApp />
+                    <ExitToApp className={classes.listIcon} />
                     Sign out
                   </MenuItem>
                 </MenuList>

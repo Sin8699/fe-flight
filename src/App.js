@@ -3,16 +3,11 @@ import "./index.css";
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { ROLE_PERMISSION, urlLabel } from "@/constants/permission";
 import { loadFromStorage } from "@/utils/storage";
-import {
-  Header,
-  Homepage,
-  Login,
-  Signup,
-  TableHistoryTicket,
-} from "./components";
+import { Header, Homepage, Login, Signup, ForgotPassword } from "./components";
 import FlightManagement from "@/module/flight/component";
 import AirportManagement from "@/module/airport/component";
 import MiddleAirport from "@/module/middle-airport/component";
+import { TransactionHistory } from "@/module/auth/component";
 
 const NormalRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={(props) => <Component {...props} />} />;
@@ -80,6 +75,12 @@ function App() {
             exact
             name="Register"
             component={Signup}
+          />
+          <PublicRoute
+            path={`/${urlLabel.forgotPassword}`}
+            exact
+            name="ForgotPassword"
+            component={ForgotPassword}
           />
           <NormalRoute path="/" exact name="Homepage" component={Homepage} />
           <PrivateRoute

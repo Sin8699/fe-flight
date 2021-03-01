@@ -49,7 +49,7 @@ function Login() {
                 Sign In
               </Button>
             </div>
-            <a href="/">
+            <a href="/forgot-password">
               <p className="link-forgot-password">Forgot password?</p>
             </a>
           </form>

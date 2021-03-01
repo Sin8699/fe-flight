@@ -1,3 +1,5 @@
+$main-color: #442b67;
+
 .homepage {
   .item-carousel {
     width: 100%;
@@ -9,7 +11,7 @@
     padding-top: 70px;
     margin: auto;
     text-align: center;
-    color: #3d1a6e;
+    color: $main-color;
     h1 {
       font-size: 50px;
       font-weight: 400px;
@@ -41,7 +43,7 @@
         }
       }
       .btn-read-more {
-        background-color: #3d1a6e;
+        background-color: $main-color;
         color: white;
         border-radius: 20px;
       }
@@ -57,7 +59,7 @@
       font-size: 48px;
       font-weight: 300;
       text-align: center;
-      color: #3d1a6e;
+      color: $main-color;
     }
     .description {
       font-weight: 300;
@@ -79,7 +81,7 @@
           width: 50%;
         }
         .item-title {
-          color: #3d1a6e;
+          color: $main-color;
           font-weight: 600;
           font-size: 20px;
           margin-top: 12px;
@@ -88,7 +90,7 @@
     }
   }
   .footer {
-    background-color: #3d1a6e;
+    background-color: $main-color;
     width: 100%;
     margin: auto;
     @media (max-width: 820px) {

@@ -17,11 +17,32 @@ const mapDispatchToAC = {
       callback && callback();
     }
   },
+  register: (data, callback) => async ({ Api }) => {
+    let { result, status } = await Api.post(`user/register`, data);
+    if (status === 200) {
+      callback && callback(result);
+    }
+  },
   getInforUser: (callback) => async ({ Api }) => {
     let { result, status } = await Api.get(`user`);
     if (status === 200) {
       authDispatcher.getInfoSuccess(result);
       callback && callback(result);
+    }
+  },
+  forgotPassword: (email, callback) => async ({ Api }) => {
+    let { result, status } = await Api.post(`user/forgot-password`, email);
+    if (status === 200) {
+      callback && callback(result);
+    }
+  },
+  resetPassword: (token, newPass, callback) => async ({ Api }) => {
+    let { result, status } = await Api.post(
+      `user/reset-password/${token}`,
+      newPass
+    );
+    if (status === 200) {
+      callback && callback();
     }
   },
   getInfoSuccess: (user) => ({ user }),
