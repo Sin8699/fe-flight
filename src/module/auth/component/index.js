@@ -1,3 +1,3 @@
 import TransactionHistory from "./TransactionHistory";
 
-export { TransactionHistory }
+export { TransactionHistory };

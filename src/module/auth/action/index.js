@@ -45,6 +45,12 @@ const mapDispatchToAC = {
       callback && callback();
     }
   },
+  changePassword: (data, callback) => async ({ Api }) => {
+    let { result, status } = await Api.post(`user/change-password`, data);
+    if (status === 200) {
+      callback && callback(result);
+    }
+  },
   getInfoSuccess: (user) => ({ user }),
   logoutSuccess: () => ({}),
   logout: () => async ({ Api }) => {

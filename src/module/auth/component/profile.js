@@ -17,9 +17,11 @@ import {
   MonetizationOn,
   Phone,
   Person,
+  VpnKey,
 } from "@material-ui/icons";
 import authDispatcher from "../action";
 import { loadFromStorage } from "@/utils/storage";
+import ChangePassword from "./ChangePassword";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,9 @@ function Profile() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+  const [openDialogChangePassword, setOpenDialogChangePassword] = useState(
+    false
+  );
 
   const [user, setUser] = useState([]);
 
@@ -131,6 +136,15 @@ function Profile() {
                     <Phone className={classes.listIcon} />
                     {user.numberPhone}
                   </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setOpenDialogChangePassword(true);
+                      setOpen(false);
+                    }}
+                  >
+                    <VpnKey className={classes.listIcon} />
+                    Change Password
+                  </MenuItem>
                   <MenuItem>
                     <MonetizationOn className={classes.listIcon} />
                     Account Balance <br /> {user.accountBalance} VND
@@ -153,6 +167,12 @@ function Profile() {
           </Grow>
         )}
       </Popper>
+      {openDialogChangePassword && (
+        <ChangePassword
+          open={openDialogChangePassword}
+          close={setOpenDialogChangePassword}
+        />
+      )}
     </div>
   );
 }

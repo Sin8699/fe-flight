@@ -7,7 +7,7 @@ import { Header, Homepage, Login, Signup, ForgotPassword } from "./components";
 import FlightManagement from "@/module/flight/component";
 import AirportManagement from "@/module/airport/component";
 import MiddleAirport from "@/module/middle-airport/component";
-import { TransactionHistory } from "@/module/auth/component";
+import { TransactionHistory, ChangePassword } from "@/module/auth/component";
 
 const NormalRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={(props) => <Component {...props} />} />;

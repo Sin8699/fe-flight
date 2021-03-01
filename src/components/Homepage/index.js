@@ -50,7 +50,7 @@ const LifestyleZone = () => {
       <hr />
       <div className="info">
         <img className="info-item img" src="/images/krabi.jpg" alt="" />
-        <p className="info-item description">
+        <span className="info-item description">
           <b className="title">Krabi</b>
           <p className="detail">
             Krabi’s seascape is no ordinary. It’s dotted with limestone cliffs
@@ -67,10 +67,10 @@ const LifestyleZone = () => {
           >
             Read more
           </Button>
-        </p>
+        </span>
       </div>
       <div className="info">
-        <p className="info-item description">
+        <span className="info-item description">
           <b className="title">Phuket</b>
           <p className="detail">
             Beach bums and sun seekers come to Phuket for the beaches, but
@@ -88,7 +88,7 @@ const LifestyleZone = () => {
           >
             Read more
           </Button>
-        </p>
+        </span>
         <img className="info-item img" src="/images/phuket.jpg" alt="" />
       </div>
     </div>
