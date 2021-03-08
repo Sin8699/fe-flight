@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { DialogContent, TextField, Grid } from "@material-ui/core";
+import { DialogContent, TextField, Grid, MenuItem } from "@material-ui/core";
 import { ClearRounded } from "@material-ui/icons";
 import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
 import validateData from "@/helpers/validationSchema";
 
-const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
+const MiddleAirportModal = ({
+  onClose,
+  selectedItem,
+  flightList,
+  typeModal,
+  onSubmit,
+}) => {
   const [formValue, setFormValue] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -30,7 +36,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   return (
     <ModalPage>
       <DialogContent>
-        <div className="header">
+        <div className="modal-header">
           {typeModal === TYPE_MODAL.Create && "New Airport"}
           {typeModal === TYPE_MODAL.Edit && selectedItem.name}
           <ClearRounded
@@ -38,24 +44,31 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
             onClick={onClose}
           />
         </div>
-        <div className="body">
+        <div className="modal-body">
           <Grid container spacing={2} style={{ marginTop: 10 }}>
             <Grid item xs={6}>
               <TextField
                 fullWidth
                 error={errors.flightCode}
                 helperText={errors.flightCode}
-                label="Flight Code"
+                label="Flight"
                 value={formValue.flightCode}
                 onChange={handleChangeForm("flightCode")}
-              />
+                select
+              >
+                {flightList.map((flight) => (
+                  <MenuItem key={flight.id} value={flight.id}>
+                    {flight.name}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
             <Grid item xs={6}>
               <TextField
                 fullWidth
                 error={errors.timeDelay}
                 helperText={errors.timeDelay}
-                label="timeDelay"
+                label="Time Delay"
                 value={formValue.timeDelay}
                 onChange={handleChangeForm("timeDelay")}
               />
@@ -65,7 +78,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
                 fullWidth
                 error={errors.order}
                 helperText={errors.order}
-                label="order"
+                label="Order"
                 value={formValue.order}
                 onChange={handleChangeForm("order")}
               />
@@ -90,4 +103,4 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   );
 };
 
-export default AirportModal;
+export default MiddleAirportModal;

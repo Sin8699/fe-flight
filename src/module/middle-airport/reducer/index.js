@@ -6,7 +6,7 @@ const initialState = {
 
 const midAirportReducer = midAirportDispatcher(initialState, {
   [midAirportDispatcher.getDataSuccess]: (state, payload) => ({
-    list: payload.data.list,
+    list: payload.data.listMiddleAirport,
   }),
   [midAirportDispatcher.setState]: (state, payload) => ({
     [payload.state]: payload.value,

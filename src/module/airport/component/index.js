@@ -44,10 +44,15 @@ const AirportManagement = () => {
     setTypeModal(null);
   };
 
+  const onSuccessAction = () => {
+    onCloseModal();
+    airportDispatcher.getData();
+  };
+
   const handleSubmit = (data) => {
     if (typeModal === TYPE_MODAL.Create)
-      airportDispatcher.createData(data, onCloseModal);
-    else airportDispatcher.updateData(data, onCloseModal);
+      airportDispatcher.createData(data, onSuccessAction);
+    else airportDispatcher.updateData({ data, id: data.id }, onSuccessAction);
   };
 
   const handleDeleteItem = () => {};
@@ -89,10 +94,11 @@ const AirportManagement = () => {
         data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
+        searchKey="name"
         renderRow={(row) => (
           <>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.date}</TableCell>
+            <TableCell>{row.address}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {
@@ -108,7 +114,7 @@ const AirportManagement = () => {
       />
       <Dialog
         disableEnforceFocus
-        maxWidth="lg"
+        maxWidth="sm"
         fullWidth
         open={showModal}
         onClose={onCloseModal}

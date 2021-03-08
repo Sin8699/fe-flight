@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableContainer as MUTableContainer,
@@ -7,10 +7,12 @@ import {
   TableRow,
   Input,
 } from "@material-ui/core";
+import { filter, includes, chunk } from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import { Search } from "@material-ui/icons";
 import { ToolsBar } from "./styled";
 import { ButtonEnhance, PaperWrapped } from "@/componentsUI";
+import TablePagination from "../TablePagination";
 
 const useStyles = makeStyles({
   paper: {
@@ -23,7 +25,6 @@ const useStyles = makeStyles({
     fontWeight: 600,
   },
   container: {
-    // height: 'calc(100% - 400px)',
     height: "100%",
     width: "100%",
   },
@@ -53,13 +54,40 @@ const TableContainer = ({
   customButtons,
   noDataHelperText,
   ToolbarComponent,
-  searchKey,
-  setSearchKey = () => {},
   header: Header,
   renderRow,
-  data,
+  searchKey,
+  data = [],
 }) => {
   const classes = useStyles();
+
+  const [localData, setLocalData] = useState(data);
+  const [paging, setPaging] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+    totalItem: localData.length || data.length,
+  });
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setPaging({ ...paging, totalItem: data.length });
+  }, [data]);
+
+  useEffect(() => {
+    if (!!search) {
+      const filteredData = filter(data, (item) =>
+        includes(item[searchKey]?.toLowerCase(), search)
+      );
+      setLocalData(filteredData);
+    } else setLocalData(data);
+  }, [data, search, searchKey]);
+
+  useEffect(() => {
+    const { pageIndex, pageSize } = paging;
+    const newData = chunk(data, pageSize)[pageIndex] || [];
+    setLocalData(newData);
+  }, [paging]);
+
   return (
     <PaperWrapped className={classes.paper}>
       <MUTableContainer>
@@ -77,9 +105,9 @@ const TableContainer = ({
             <div className="search-container">
               <Input
                 allowClear
-                value={searchKey}
+                value={search}
                 onChange={(e) => {
-                  setSearchKey(e.target.value);
+                  setSearch(e.target.value);
                 }}
                 fullWidth
                 placeholder="Search..."
@@ -98,7 +126,7 @@ const TableContainer = ({
           <Table stickyHeader>
             {Header && <Header />}
             <TableBody>
-              {(data || []).map((d, i) => (
+              {localData.map((d, i) => (
                 <TableRow
                   key={d.id}
                   hover
@@ -118,6 +146,7 @@ const TableContainer = ({
           <p className={classes.descTxtTable}>{noDataHelperText}</p>
         </div>
       )}
+      <TablePagination paging={paging} onChange={setPaging} />
     </PaperWrapped>
   );
 };

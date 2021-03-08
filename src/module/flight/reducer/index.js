@@ -1,12 +1,12 @@
 import flightDispatcher from "../action";
 
 const initialState = {
-  list: [{ name: "AA A A", date: "03/18/2021" }],
+  list: [],
 };
 
 const flightReducer = flightDispatcher(initialState, {
   [flightDispatcher.getDataSuccess]: (state, payload) => ({
-    // list: payload.data.list,
+    list: payload.data.listFlight,
   }),
   [flightDispatcher.setState]: (state, payload) => ({
     [payload.state]: payload.value,

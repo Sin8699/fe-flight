@@ -53,6 +53,7 @@ export const ModalFooter = styled(DialogActions)`
 `;
 
 export const PaperWrapped = styled(Paper)`
+  padding-top: 70px;
   .table-container-header {
     display: flex;
     justify-content: space-between;

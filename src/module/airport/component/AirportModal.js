@@ -28,7 +28,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   return (
     <ModalPage>
       <DialogContent>
-        <div className="header">
+        <div className="modal-header">
           {typeModal === TYPE_MODAL.Create && "New Airport"}
           {typeModal === TYPE_MODAL.Edit && selectedItem.name}
           <ClearRounded
@@ -36,9 +36,9 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
             onClick={onClose}
           />
         </div>
-        <div className="body">
+        <div className="modal-body">
           <Grid container spacing={2} style={{ marginTop: 10 }}>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 error={errors.name}
@@ -49,7 +49,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
                 disabled={typeModal === TYPE_MODAL.View}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 error={errors.address}

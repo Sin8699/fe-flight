@@ -18,9 +18,11 @@ import MiddleAirportModal from "./MiddleAirportModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
 import midAirportDispatcher from "../action";
+import flightDispatcher from "@/module/flight/action";
 
 const MiddleAirportManagement = () => {
   const { list } = useSelector((state) => state.middleAirport);
+  const { list: flightList } = useSelector((state) => state.flight);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -31,6 +33,7 @@ const MiddleAirportManagement = () => {
 
   useEffect(() => {
     midAirportDispatcher.getData();
+    flightDispatcher.getData();
   }, []);
 
   const onShowModal = (type) => {
@@ -119,6 +122,7 @@ const MiddleAirportManagement = () => {
           selectedItem={selectedItem}
           typeModal={typeModal}
           onSubmit={handleSubmit}
+          flightList={flightList}
         />
       </Dialog>
       {deleteModal && (

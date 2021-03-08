@@ -4,9 +4,15 @@ import Profile from "../../module/auth/component/profile";
 import { loadFromStorage } from "@/utils/storage";
 import { get } from "lodash";
 import { Menu, MenuItem, Button } from "@material-ui/core";
+import { ROLE_PERMISSION, urlLabel } from "@/constants/permission";
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
-  const { accessToken, role } = loadFromStorage("user") || {};
+  const history = useHistory();
+
+  const { accessToken } = loadFromStorage("user") || {};
+  const role = useSelector((state) => get(state, "auth.userInfo.role"));
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -15,6 +21,11 @@ const Header = () => {
   };
 
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleChangePath = (path) => {
+    history.push(`/${path}`);
     setAnchorEl(null);
   };
 
@@ -34,19 +45,33 @@ const Header = () => {
           <div className="not-responsive">
             {!accessToken ? (
               <div>
-                <a href="/login" className="link-btn">
+                <Link href="/login" className="link-btn">
                   Sign in
-                </a>
-                <a href="/register" className="link-btn sign-up">
+                </Link>
+                <Link href="/register" className="link-btn sign-up">
                   Sign up
-                </a>
+                </Link>
               </div>
             ) : (
               <div className="link-group">
-                {accessToken && role !== "ADMIN" && (
-                  <a href="/flight" className="link-btn">
-                    Book Ticket
-                  </a>
+                <Link to={`/${urlLabel.flightManagement}`} className="link-btn">
+                  Book Ticket
+                </Link>
+                {role === ROLE_PERMISSION.Admin && (
+                  <React.Fragment>
+                    <Link
+                      to={`/${urlLabel.airportManagement}`}
+                      className="link-btn"
+                    >
+                      Airport
+                    </Link>
+                    <Link
+                      to={`/${urlLabel.middleAirport}`}
+                      className="link-btn"
+                    >
+                      Middle Airport
+                    </Link>
+                  </React.Fragment>
                 )}
                 <Profile />
               </div>
@@ -80,12 +105,26 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="background-color-menu-res">
-                  {accessToken && role !== "ADMIN" && (
-                    <MenuItem
-                      onClick={() => window.location.replace("/flight")}
-                    >
-                      Book Ticket
-                    </MenuItem>
+                  <MenuItem
+                    onClick={() => handleChangePath(urlLabel.flightManagement)}
+                  >
+                    Book Ticket
+                  </MenuItem>
+                  {role === ROLE_PERMISSION.Admin && (
+                    <React.Fragment>
+                      <MenuItem
+                        onClick={() =>
+                          handleChangePath(urlLabel.airportManagement)
+                        }
+                      >
+                        Airport
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => handleChangePath(urlLabel.middleAirport)}
+                      >
+                        Middle Airport
+                      </MenuItem>
+                    </React.Fragment>
                   )}
                 </div>
               )}

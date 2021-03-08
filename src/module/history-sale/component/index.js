@@ -108,7 +108,7 @@ const SaleManagement = () => {
       />
       <Dialog
         disableEnforceFocus
-        maxWidth="lg"
+        maxWidth="md"
         fullWidth
         open={showModal}
         onClose={onCloseModal}

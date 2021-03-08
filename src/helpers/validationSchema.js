@@ -3,7 +3,20 @@ import { get, set, forEach } from "lodash";
 
 const flightSchema = Yup.object().shape({
   airportFrom: Yup.string().required("Airport from is required"),
-  airportTo: Yup.string().required("Airport to is required"),
+  airportTo: Yup.string()
+    .required("Airport to is required")
+    .test({
+      name: "validator-booking-place",
+      test: function (value) {
+        const airportFrom = this.resolve(Yup.ref("airportFrom"));
+        if (value === airportFrom)
+          return this.createError({
+            message: `Airport To must different from airport from`,
+            path: "airportTo",
+          });
+        return true;
+      },
+    }),
   dateStart: Yup.date().nullable().required("Start date is required"),
   dateEnd: Yup.date().nullable().required("End date is required"),
   vipSeats: Yup.string().required("Vip seat is required"),

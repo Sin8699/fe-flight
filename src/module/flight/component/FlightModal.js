@@ -114,17 +114,14 @@ const FlightModal = ({
                   error={errors.airportFrom}
                   helperText={errors.airportFrom}
                   label="From"
-                  value={formValue.airportFrom}
+                  value={formValue.airportFrom || ""}
                   onChange={handleChangeForm("airportFrom")}
                   select
                   fullWidth
                   disabled={disabledAdminField}
                 >
                   {airportList.map((airport) => (
-                    <MenuItem
-                      key={airport.airportCode}
-                      value={airport.airportCode}
-                    >
+                    <MenuItem key={airport.id} value={airport.id}>
                       {airport.name}
                     </MenuItem>
                   ))}
@@ -135,17 +132,14 @@ const FlightModal = ({
                   error={errors.airportTo}
                   helperText={errors.airportTo}
                   label="To"
-                  value={formValue.airportTo}
+                  value={formValue.airportTo || ""}
                   onChange={handleChangeForm("airportTo")}
                   select
                   fullWidth
                   disabled={disabledAdminField}
                 >
                   {airportList.map((airport) => (
-                    <MenuItem
-                      key={airport.airportCode}
-                      value={airport.airportCode}
-                    >
+                    <MenuItem key={airport.id} value={airport.id}>
                       {airport.name}
                     </MenuItem>
                   ))}

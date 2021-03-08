@@ -9,6 +9,6 @@ export const urlLabel = {
 };
 
 export const ROLE_PERMISSION = {
-  Admin: "admin",
-  Guest: "guest",
+  Admin: "ADMIN",
+  Guest: "GUEST",
 };

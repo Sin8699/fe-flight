@@ -1,5 +1,7 @@
 import React from "react";
 import "./index.css";
+import { connect } from "react-redux";
+import { get } from "lodash";
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { ROLE_PERMISSION, urlLabel } from "@/constants/permission";
 import { loadFromStorage } from "@/utils/storage";
@@ -38,15 +40,20 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const AdminRoute = ({ component: Component, restricted, ...rest }) => {
-  const { accessToken, role } = loadFromStorage("user") || {};
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+const AdminRoute = ({ component: Component, restricted, auth, ...rest }) => {
+  const { accessToken } = loadFromStorage("user") || {};
 
   return (
     <Route
       {...rest}
       render={(props) =>
         accessToken ? (
-          role === ROLE_PERMISSION.Admin ? (
+          get(auth, "userInfo.role") === ROLE_PERMISSION.Admin ? (
             <Component {...props} />
           ) : (
             <Redirect to="/" />
@@ -58,6 +65,8 @@ const AdminRoute = ({ component: Component, restricted, ...rest }) => {
     />
   );
 };
+const WrapAdminRoute = connect(mapStateToProps)(AdminRoute);
+
 function App() {
   return (
     <div>
@@ -88,12 +97,12 @@ function App() {
             exact
             component={FlightManagement}
           />
-          <AdminRoute
+          <WrapAdminRoute
             path={`/${urlLabel.airportManagement}`}
             exact
             component={AirportManagement}
           />
-          <AdminRoute
+          <WrapAdminRoute
             path={`/${urlLabel.middleAirport}`}
             exact
             component={MiddleAirport}
