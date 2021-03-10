@@ -10,6 +10,7 @@ import FlightManagement from "@/module/flight/component";
 import AirportManagement from "@/module/airport/component";
 import MiddleAirport from "@/module/middle-airport/component";
 import { TransactionHistory } from "@/module/auth/component";
+import SaleHistory from "@/module/history-sale/component";
 
 const NormalRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={(props) => <Component {...props} />} />;
@@ -96,6 +97,11 @@ function App() {
             path={`/${urlLabel.flightManagement}`}
             exact
             component={FlightManagement}
+          />
+          <PrivateRoute
+            path={`/${urlLabel.saleHistory}`}
+            exact
+            component={SaleHistory}
           />
           <WrapAdminRoute
             path={`/${urlLabel.airportManagement}`}

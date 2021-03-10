@@ -1,15 +1,15 @@
 export const midAirportColumn = [
   {
-    label: "Name",
-    stateValue: "name",
+    label: "Flight Code",
+    stateValue: "flightCode",
   },
   {
-    label: "Address",
-    stateValue: "address",
+    label: "Time Delay",
+    stateValue: "timeDelay",
   },
   {
-    label: "Other",
-    stateValue: "other",
+    label: "Order",
+    stateValue: "order",
   },
   {
     label: "",

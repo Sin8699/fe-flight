@@ -1,4 +1,4 @@
-export const flightColumn = [
+export const saleColumn = [
   {
     label: "Name",
     stateValue: "name",
@@ -17,11 +17,11 @@ export const flightColumn = [
   },
   {
     label: "Start Date",
-    stateValue: "dateStar",
+    stateValue: "dateStart",
   },
   {
-    label: "Start Time",
-    stateValue: "timeStar",
+    label: "End Date",
+    stateValue: "dateEnd",
   },
   {
     label: "Vip Price",
@@ -30,6 +30,10 @@ export const flightColumn = [
   {
     label: "Normal Price",
     stateValue: "normalPrice",
+  },
+  {
+    label: "Status",
+    stateValue: "status",
   },
   {
     label: "",

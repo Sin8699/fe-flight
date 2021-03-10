@@ -45,10 +45,10 @@ const Header = () => {
           <div className="not-responsive">
             {!accessToken ? (
               <div>
-                <Link href="/login" className="link-btn">
+                <Link to="/login" className="link-btn">
                   Sign in
                 </Link>
-                <Link href="/register" className="link-btn sign-up">
+                <Link to="/register" className="link-btn sign-up">
                   Sign up
                 </Link>
               </div>
@@ -56,6 +56,9 @@ const Header = () => {
               <div className="link-group">
                 <Link to={`/${urlLabel.flightManagement}`} className="link-btn">
                   Book Ticket
+                </Link>
+                <Link to={`/${urlLabel.saleHistory}`} className="link-btn">
+                  Booking History
                 </Link>
                 {role === ROLE_PERMISSION.Admin && (
                   <React.Fragment>

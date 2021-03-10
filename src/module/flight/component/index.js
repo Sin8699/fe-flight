@@ -19,9 +19,12 @@ import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
 import flightDispatcher from "../action";
 import airportDispatcher from "@/module/airport/action";
+import saleDispatcher from "@/module/history-sale/action";
+import moment from "moment";
 
 const FlightManagement = () => {
   const { list } = useSelector((state) => state.flight);
+  const { userInfo } = useSelector((state) => state.auth);
   const { list: airportList } = useSelector((state) => state.airport);
 
   const [selectedItem, setSelectedItem] = useState({});
@@ -46,11 +49,22 @@ const FlightManagement = () => {
     setShowModal(false);
     setTypeModal(null);
   };
+  const onSuccessAction = () => {
+    onCloseModal();
+    flightDispatcher.getData();
+  };
 
   const handleSubmit = (data) => {
     if (typeModal === TYPE_MODAL.Create)
-      flightDispatcher.createData(data, onCloseModal);
-    else flightDispatcher.updateData(data, onCloseModal);
+      flightDispatcher.createData(data, onSuccessAction);
+    else {
+      if (typeModal === TYPE_MODAL.BookTicket) {
+        moment().isAfter(
+          moment(selectedItem.startLivestreamDate).subtract(45, "m") &&
+            saleDispatcher.createData(data, onCloseModal)
+        );
+      } else flightDispatcher.updateData(data, onSuccessAction);
+    }
   };
 
   const handleDeleteItem = () => {};
@@ -74,6 +88,7 @@ const FlightManagement = () => {
     onDelete: () => {
       setAnchorEl(null);
     },
+    role: userInfo?.role,
   });
 
   const TableHeader = () => (

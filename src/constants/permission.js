@@ -2,7 +2,7 @@ export const urlLabel = {
   flightManagement: "flight",
   airportManagement: "airport",
   middleAirport: "middle-airport",
-  saleHistory: "sale-history",
+  saleHistory: "booking-history",
   login: "login",
   signUp: "register",
   forgotPassword: "forgot-password",

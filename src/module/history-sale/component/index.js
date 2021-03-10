@@ -20,7 +20,8 @@ import { useSelector } from "react-redux";
 import saleDispatcher from "../action";
 
 const SaleManagement = () => {
-  const { list } = useSelector((state) => state.sale);
+  const { list } = useSelector((state) => state.historySale);
+  console.log('list: ', list);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -61,6 +62,7 @@ const SaleManagement = () => {
     onDelete: () => {
       setAnchorEl(null);
     },
+    selectedItem,
   });
 
   const TableHeader = () => (
@@ -92,7 +94,14 @@ const SaleManagement = () => {
         renderRow={(row) => (
           <>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.date}</TableCell>
+            <TableCell>{row.flightCode}</TableCell>
+            <TableCell>{row.airportFrom}</TableCell>
+            <TableCell>{row.airportTo}</TableCell>
+            <TableCell>{row.dateStart}</TableCell>
+            <TableCell>{row.dateEnd}</TableCell>
+            <TableCell>{row.vipPrice}</TableCell>
+            <TableCell>{row.normalPrice}</TableCell>
+            <TableCell>{row.status}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {

@@ -94,9 +94,9 @@ const MiddleAirportManagement = () => {
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
         renderRow={(row) => (
           <>
-            <TableCell>{row.name}</TableCell>
-            <TableCell>{row.address}</TableCell>
-            <TableCell>{row.other}</TableCell>
+            <TableCell>{row.flightCode}</TableCell>
+            <TableCell>{row.timeDelay}</TableCell>
+            <TableCell>{row.order}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {

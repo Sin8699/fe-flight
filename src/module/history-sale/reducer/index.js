@@ -6,7 +6,7 @@ const initialState = {
 
 const saleReducer = saleDispatcher(initialState, {
   [saleDispatcher.getDataSuccess]: (state, payload) => ({
-    list: payload.data.list,
+    list: payload.data.listSale,
   }),
   [saleDispatcher.setState]: (state, payload) => ({
     [payload.state]: payload.value,
