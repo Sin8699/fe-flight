@@ -1,15 +1,11 @@
-export const saleColumn = [
-  // {
-  //   label: "Name",
-  //   stateValue: "name",
-  // },
+export const userColumn = [
   {
-    label: "Flight Code",
-    stateValue: "flightCode",
+    label: "Name",
+    stateValue: "name",
   },
   {
-    label: "From",
-    stateValue: "airportFrom",
+    label: "Email",
+    stateValue: "email",
   },
   {
     label: "To",
@@ -32,16 +28,7 @@ export const saleColumn = [
     stateValue: "normalPrice",
   },
   {
-    label: "Status",
-    stateValue: "status",
-  },
-  {
     label: "",
     stateValue: "action",
   },
 ];
-
-export const TICKET_STATUS = {
-  Book: "Booked",
-  Buy: "Bought",
-};

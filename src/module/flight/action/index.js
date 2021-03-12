@@ -17,14 +17,14 @@ const mapDispatchToAC = {
     }
   },
   createData: (data, callback) => async ({ Api, toastr }) => {
-    let { status } = await Api.post(`airport/create-flight`, data);
+    let { status } = await Api.post(`flight/create-flight`, data);
     if (status === 200) {
       toastr.success("Success");
       callback && callback();
     }
   },
   updateData: (data, callback) => async ({ Api, toastr }) => {
-    let { status, result } = await Api.post(`airport/update-flight`, data);
+    let { status, result } = await Api.post(`flight/update-flight`, data);
     if (status === 200) {
       toastr.success("Success");
       callback && callback(result);

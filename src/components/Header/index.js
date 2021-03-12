@@ -74,6 +74,12 @@ const Header = () => {
                     >
                       Middle Airport
                     </Link>
+                    <Link
+                      to={`/${urlLabel.userManagement}`}
+                      className="link-btn"
+                    >
+                      User Management
+                    </Link>
                   </React.Fragment>
                 )}
                 <Profile />
@@ -126,6 +132,13 @@ const Header = () => {
                         onClick={() => handleChangePath(urlLabel.middleAirport)}
                       >
                         Middle Airport
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() =>
+                          handleChangePath(urlLabel.userManagement)
+                        }
+                      >
+                        User Management
                       </MenuItem>
                     </React.Fragment>
                   )}

@@ -12,17 +12,16 @@ import { MoreVertRounded } from "@material-ui/icons";
 import TableContainer from "@/components/TableContainer";
 import MenuAction from "@/components/MenuAction";
 import { renderAction } from "../utils";
-import { saleColumn, TICKET_STATUS } from "../constants";
+import { userColumn } from "../constants";
 import { TYPE_MODAL } from "@/constants/modal";
-import SaleModal from "./SaleModal";
+import UserModal from "./UserModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
-import saleDispatcher from "../action";
-import moment from "moment";
-import { FORMAT_DATE_TIME } from "@/constants/dateTime";
+import userDispatcher from "../action";
 
-const SaleManagement = () => {
-  const { list } = useSelector((state) => state.historySale);
+const UserManagement = () => {
+  const { list } = useSelector((state) => state.auth);
+  console.log('list: ', list);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -32,7 +31,7 @@ const SaleManagement = () => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   useEffect(() => {
-    saleDispatcher.getData();
+    userDispatcher.getAllData();
   }, []);
 
   const onShowModal = (type) => {
@@ -45,29 +44,31 @@ const SaleManagement = () => {
     setShowModal(false);
     setTypeModal(null);
   };
-
-  const handleSubmit = (data) => {
-    if (typeModal === TYPE_MODAL.Create)
-      saleDispatcher.createData(data, onCloseModal);
-    else saleDispatcher.updateData(data, onCloseModal);
+  const onSuccessAction = () => {
+    onCloseModal();
+    userDispatcher.getAllData();
   };
+
+  const handleSubmit = (data) => {};
 
   const handleDeleteItem = () => {};
 
   const listActions = renderAction({
-    onViewDetail: () => {
+    onEdit: () => {
       setAnchorEl(null);
-      setTypeModal(TYPE_MODAL.View);
+      setTypeModal(TYPE_MODAL.Edit);
       setShowModal(true);
     },
-    onCancelTicket: () => {},
-    selectedItem,
+
+    onDelete: () => {
+      setAnchorEl(null);
+    },
   });
 
   const TableHeader = () => (
     <TableHead>
       <TableRow>
-        {saleColumn.map((item) => (
+        {userColumn.map((item) => (
           <TableCell key={item.stateValue}>{item.label}</TableCell>
         ))}
       </TableRow>
@@ -86,27 +87,17 @@ const SaleManagement = () => {
         {anchorEl && <MenuAction listActions={listActions} />}
       </Menu>
       <TableContainer
-        title="History Sale"
+        title="User Management"
         data={list}
         header={TableHeader}
         onAddNew={() => onShowModal(TYPE_MODAL.Create)}
         renderRow={(row) => (
           <>
-            {/* <TableCell>{row.name}</TableCell> */}
-            <TableCell>{row.flightCode}</TableCell>
-            <TableCell>{row.flightInfo?.airportFrom}</TableCell>
-            <TableCell>{row.flightInfo?.airportTo}</TableCell>
-            <TableCell>
-              {moment(row.flightInfo?.dateStart).format(FORMAT_DATE_TIME)}
-            </TableCell>
-            <TableCell>
-              {moment(row.flightInfo?.dateEnd).format(FORMAT_DATE_TIME)}
-            </TableCell>
-            <TableCell>{row.flightInfo?.vipPrice}</TableCell>
-            <TableCell>{row.flightInfo?.normalPrice}</TableCell>
-            <TableCell>
-              {row.status ? TICKET_STATUS.Buy : TICKET_STATUS.Book}
-            </TableCell>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.email}</TableCell>
+            <TableCell>{row.airportTo}</TableCell>
+            <TableCell>{row.dateStart}</TableCell>
+            <TableCell>{row.dateEnd}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {
@@ -127,7 +118,7 @@ const SaleManagement = () => {
         open={showModal}
         onClose={onCloseModal}
       >
-        <SaleModal
+        <UserModal
           onClose={onCloseModal}
           selectedItem={selectedItem}
           typeModal={typeModal}
@@ -140,7 +131,7 @@ const SaleManagement = () => {
           selectedItem={selectedItem}
           onClose={() => setDeleteModal(false)}
           onDelete={handleDeleteItem}
-          modalName="Sale"
+          modalName="User"
           title={selectedItem.name}
         />
       )}
@@ -148,4 +139,4 @@ const SaleManagement = () => {
   );
 };
 
-export default SaleManagement;
+export default UserManagement;

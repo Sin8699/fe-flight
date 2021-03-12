@@ -4,10 +4,6 @@ export const flightColumn = [
     stateValue: "name",
   },
   {
-    label: "Flight Code",
-    stateValue: "flightCode",
-  },
-  {
     label: "From",
     stateValue: "airportFrom",
   },
@@ -36,3 +32,8 @@ export const flightColumn = [
     stateValue: "action",
   },
 ];
+
+export const TICKET_STATUS = {
+  Book: "Book",
+  Buy: "Buy",
+};

@@ -5,7 +5,7 @@ import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
 import validateData from "@/helpers/validationSchema";
 
-const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
+const SaleModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   const [formValue, setFormValue] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -15,7 +15,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
 
   const handleSubmit = async () => {
     try {
-      await validateData("airportSchema", formValue, (data) => onSubmit(data));
+      await validateData("saleSchema", formValue, (data) => onSubmit(data));
     } catch (errs) {
       setErrors(errs);
     }
@@ -29,7 +29,7 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
     <ModalPage>
       <DialogContent>
         <div className="modal-header">
-          {typeModal === TYPE_MODAL.Create && "New Airport"}
+          {typeModal === TYPE_MODAL.Create && "New Sale"}
           {typeModal === TYPE_MODAL.Edit && selectedItem.name}
           <ClearRounded
             style={{ cursor: "pointer", float: "right", color: "#CACFD3" }}
@@ -80,4 +80,4 @@ const AirportModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   );
 };
 
-export default AirportModal;
+export default SaleModal;

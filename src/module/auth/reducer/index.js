@@ -7,6 +7,7 @@ const initialState = {
   refreshToken: "",
   tokenType: "Bearer",
   userInfo: {},
+  list: [],
 };
 
 const authReducer = authDispatcher(initialState, {
@@ -22,6 +23,9 @@ const authReducer = authDispatcher(initialState, {
   }),
   [authDispatcher.getInfoSuccess]: (state, payload) => ({
     userInfo: payload.user,
+  }),
+  [authDispatcher.getDataSuccess]: (state, payload) => ({
+    list: payload.data,
   }),
 });
 

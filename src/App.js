@@ -11,6 +11,7 @@ import AirportManagement from "@/module/airport/component";
 import MiddleAirport from "@/module/middle-airport/component";
 import { TransactionHistory } from "@/module/auth/component";
 import SaleHistory from "@/module/history-sale/component";
+import UserManagement from "@/module/auth/component/UserManagement";
 
 const NormalRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={(props) => <Component {...props} />} />;
@@ -112,6 +113,11 @@ function App() {
             path={`/${urlLabel.middleAirport}`}
             exact
             component={MiddleAirport}
+          />
+          <WrapAdminRoute
+            path={`/${urlLabel.userManagement}`}
+            exact
+            component={UserManagement}
           />
           <Route path="*">
             <div className="page-404">

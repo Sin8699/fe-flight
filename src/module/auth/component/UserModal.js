@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { DialogContent, TextField, Grid, MenuItem } from "@material-ui/core";
+import { DialogContent, TextField, Grid } from "@material-ui/core";
 import { ClearRounded } from "@material-ui/icons";
 import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
 import validateData from "@/helpers/validationSchema";
 
-const MiddleAirportModal = ({
-  onClose,
-  selectedItem,
-  flightList,
-  typeModal,
-  onSubmit,
-}) => {
+const UserModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
   const [formValue, setFormValue] = useState({});
-  console.log("formValue: ", formValue);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -22,9 +15,7 @@ const MiddleAirportModal = ({
 
   const handleSubmit = async () => {
     try {
-      await validateData("middleAirportSchema", formValue, (data) =>
-        onSubmit(data)
-      );
+      await validateData("userSchema", formValue, (data) => onSubmit(data));
     } catch (errs) {
       setErrors(errs);
     }
@@ -38,8 +29,8 @@ const MiddleAirportModal = ({
     <ModalPage>
       <DialogContent>
         <div className="modal-header">
-          {typeModal === TYPE_MODAL.Create && "New Airport"}
-          {typeModal === TYPE_MODAL.Edit && selectedItem.airportCode}
+          {typeModal === TYPE_MODAL.Create && "New User"}
+          {typeModal === TYPE_MODAL.Edit && selectedItem.name}
           <ClearRounded
             style={{ cursor: "pointer", float: "right", color: "#CACFD3" }}
             onClick={onClose}
@@ -50,38 +41,23 @@ const MiddleAirportModal = ({
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.flightCode}
-                helperText={errors.flightCode}
-                label="Flight"
-                value={formValue.flightCode || ""}
-                onChange={handleChangeForm("flightCode")}
-                select
-              >
-                {flightList.map((flight) => (
-                  <MenuItem key={flight.id} value={flight.id}>
-                    {flight.id}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                error={errors.timeDelay}
-                helperText={errors.timeDelay}
-                label="Time Delay"
-                value={formValue.timeDelay}
-                onChange={handleChangeForm("timeDelay")}
+                error={errors.name}
+                helperText={errors.name}
+                label="Name"
+                value={formValue.name}
+                onChange={handleChangeForm("name")}
+                disabled={typeModal === TYPE_MODAL.View}
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.order}
-                helperText={errors.order}
-                label="Order"
-                value={formValue.order}
-                onChange={handleChangeForm("order")}
+                error={errors.address}
+                helperText={errors.address}
+                label="Address"
+                value={formValue.address}
+                onChange={handleChangeForm("address")}
+                disabled={typeModal === TYPE_MODAL.View}
               />
             </Grid>
           </Grid>
@@ -104,4 +80,4 @@ const MiddleAirportModal = ({
   );
 };
 
-export default MiddleAirportModal;
+export default UserModal;

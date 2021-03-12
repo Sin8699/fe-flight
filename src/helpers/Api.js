@@ -1,5 +1,6 @@
 import fetchHelper from "./FetchHelper";
 import { loadFromStorage } from "@/utils/storage";
+import toastr from "toastr";
 
 export const API_URL = process.env.REACT_APP_API_ROOT;
 
@@ -95,13 +96,13 @@ const request = async (
 
     if (SUCCESS_CODE.includes(status)) return { result, status };
 
-    // showError &&
-    //   toastr.error(
-    //     data.Message ||
-    //       data.message ||
-    //       (status === 403 && "Permission denied") ||
-    //       "Something went wrong"
-    //   );
+    showError &&
+      toastr.error(
+        data.Message ||
+          data.message ||
+          (status === 403 && "Permission denied") ||
+          "Something went wrong"
+      );
     return { result: null, message: data.message, status };
   } catch (exception) {
     console.log("exception: ", exception);

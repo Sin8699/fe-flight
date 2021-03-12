@@ -15,6 +15,7 @@ import { LocalizationProvider, DateTimePicker } from "@material-ui/pickers";
 import MomentAdapter from "@material-ui/pickers/adapter/moment";
 import moment from "moment";
 import validateData from "@/helpers/validationSchema";
+import { TICKET_STATUS } from "../constants";
 
 const FlightModal = ({
   onClose,
@@ -24,8 +25,10 @@ const FlightModal = ({
   airportList = [],
 }) => {
   const [formValue, setFormValue] = useState({ dateStart: "", dateEnd: "" });
+  console.log("selectedItem: ", selectedItem);
+  console.log("formValue: ", formValue);
   const [bookTicket, setBookTicket] = useState({
-    status: true,
+    status: TICKET_STATUS.Book,
     normalSeats: 0,
     vipSeats: 0,
   });
@@ -57,26 +60,17 @@ const FlightModal = ({
 
   const handleSubmitTicket = async () => {
     try {
-      await validateData("bookTicketSchema", bookTicket, (data) =>
-        onSubmit({ ...data, flightCode: formValue.flightCode })
-      );
+      await validateData("bookTicketSchema", bookTicket, (data) => {
+        const status = data.status === TICKET_STATUS.Buy;
+        onSubmit({ ...data, flightCode: selectedItem.id, status });
+      });
     } catch (errs) {
       setErrors(errs);
     }
   };
 
   const handleBookTicket = (key) => (e) => {
-    let value;
-    switch (key) {
-      case "book":
-      case "buy":
-        value = e.target.checked;
-        break;
-      default:
-        value = e.target.value;
-        break;
-    }
-    setBookTicket({ ...bookTicket, [key]: value });
+    setBookTicket({ ...bookTicket, [key]: e.target.value });
   };
 
   const handleChangeForm = (key) => (e) => {
@@ -280,20 +274,23 @@ const FlightModal = ({
                   <RadioGroup
                     value={bookTicket.status}
                     onChange={handleBookTicket("status")}
+                    className="radio-group"
                   >
-                    <Grid item xs={6}>
-                      <FormControlLabel
-                        label="Book Ticket (50% price of ticket)"
-                        value={false}
-                        control={<Radio />}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <FormControlLabel
-                        label="Buy Ticket"
-                        value={true}
-                        control={<Radio />}
-                      />
+                    <Grid container>
+                      <Grid item xs={6}>
+                        <FormControlLabel
+                          label="Book Ticket (50% price of ticket)"
+                          value={TICKET_STATUS.Book}
+                          control={<Radio />}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <FormControlLabel
+                          label="Buy Ticket"
+                          value={TICKET_STATUS.Buy}
+                          control={<Radio />}
+                        />
+                      </Grid>
                     </Grid>
                   </RadioGroup>
                 </React.Fragment>

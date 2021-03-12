@@ -55,12 +55,13 @@ const FlightManagement = () => {
   };
 
   const handleSubmit = (data) => {
+    console.log('data: ', data);
     if (typeModal === TYPE_MODAL.Create)
       flightDispatcher.createData(data, onSuccessAction);
     else {
       if (typeModal === TYPE_MODAL.BookTicket) {
         moment().isAfter(
-          moment(selectedItem.startLivestreamDate).subtract(45, "m") &&
+          moment(selectedItem.dateStart).subtract(30, "m") &&
             saleDispatcher.createData(data, onCloseModal)
         );
       } else flightDispatcher.updateData(data, onSuccessAction);
@@ -120,7 +121,6 @@ const FlightManagement = () => {
         renderRow={(row) => (
           <>
             <TableCell>{row.name}</TableCell>
-            <TableCell>{row.flightCode}</TableCell>
             <TableCell>{row.airportFrom}</TableCell>
             <TableCell>{row.airportTo}</TableCell>
             <TableCell>{row.dateStart}</TableCell>

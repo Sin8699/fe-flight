@@ -12,7 +12,7 @@ const mapDispatchToAC = {
     }
   },
   createData: (data, callback) => async ({ Api, toastr }) => {
-    let { status } = await Api.get(`history-sale/create-sale`, data);
+    let { status } = await Api.post(`history-sale/create-sale`, data);
     if (status === 200) {
       toastr.success("Success");
       callback && callback();

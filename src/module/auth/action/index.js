@@ -58,7 +58,15 @@ const mapDispatchToAC = {
     fetchHelper.addDefaultHeader("Authorization", ``);
     authDispatcher.logoutSuccess();
   },
-
+  getDataSuccess: (data) => ({
+    data,
+  }),
+  getAllData: () => async ({ Api }) => {
+    let { result, status } = await Api.get(`user`);
+    if (status === 200) {
+      authDispatcher.getDataSuccess(result);
+    }
+  },
   setState: (state, value) => ({ state, value }),
 };
 

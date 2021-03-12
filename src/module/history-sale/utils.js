@@ -2,7 +2,6 @@ import { DeleteRounded, Edit } from "@material-ui/icons";
 import { ROLE_PERMISSION } from "@/constants/permission";
 
 export const renderAction = ({
-  onEdit,
   onViewDetail,
   onCancelTicket,
   selectedItem,
