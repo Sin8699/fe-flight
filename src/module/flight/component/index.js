@@ -65,7 +65,8 @@ const FlightManagement = () => {
           moment(selectedItem.dateStart).subtract(30, "m") &&
             saleDispatcher.createData(data, onCloseModal)
         );
-      } else flightDispatcher.updateData(data, onSuccessAction);
+      } else
+        flightDispatcher.updateData({ data, id: data.id }, onSuccessAction);
     }
   };
 

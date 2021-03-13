@@ -45,3 +45,38 @@ export const TICKET_STATUS = {
   Book: "Booked",
   Buy: "Bought",
 };
+
+export const summaryColumn = [
+  {
+    label: "Flight Code",
+    stateValue: "flightCode",
+  },
+  {
+    label: "From",
+    stateValue: "airportFrom",
+  },
+  {
+    label: "To",
+    stateValue: "airportTo",
+  },
+  {
+    label: "Start Date",
+    stateValue: "dateStart",
+  },
+  {
+    label: "End Date",
+    stateValue: "dateEnd",
+  },
+  {
+    label: "Vip Price",
+    stateValue: "vipPrice",
+  },
+  {
+    label: "Normal Price",
+    stateValue: "normalPrice",
+  },
+  {
+    label: "Status",
+    stateValue: "status",
+  },
+];

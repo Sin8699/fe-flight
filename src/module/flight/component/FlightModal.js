@@ -94,7 +94,7 @@ const FlightModal = ({
           {typeModal === TYPE_MODAL.Create && "New Flight"}
           {typeModal === TYPE_MODAL.View && "Flight Detail"}
           {typeModal === TYPE_MODAL.BookTicket && "Booking Ticket"}
-          {typeModal === TYPE_MODAL.Edit && selectedItem.name}
+          {typeModal === TYPE_MODAL.Edit && "Update Flight"}
           <ClearRounded
             style={{ cursor: "pointer", float: "right", color: "#CACFD3" }}
             onClick={onClose}

@@ -23,7 +23,7 @@ const mapDispatchToAC = {
       callback && callback();
     }
   },
-  updateData: (data, callback) => async ({ Api, toastr }) => {
+  updateData: ({ data, id }, callback) => async ({ Api, toastr }) => {
     let { status, result } = await Api.post(`flight/update-flight`, data);
     if (status === 200) {
       toastr.success("Success");

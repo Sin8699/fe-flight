@@ -4,10 +4,19 @@ const mapDispatchToAC = {
   getDataSuccess: (data) => ({
     data,
   }),
-  getData: (search, paging) => async ({ Api }) => {
+  getData: () => async ({ Api }) => {
     let { result, status } = await Api.get(`history-sale`);
     if (status === 200) {
       saleDispatcher.getDataSuccess(result);
+    }
+  },
+  getTimeDataSuccess: (data) => ({
+    data,
+  }),
+  getDataByTime: ({ year, month }) => async ({ Api }) => {
+    let { result, status } = await Api.get(`history-sale/${year}/${month}`);
+    if (status === 200) {
+      saleDispatcher.getTimeDataSuccess(result);
     }
   },
   createData: (data, callback) => async ({ Api, toastr }) => {

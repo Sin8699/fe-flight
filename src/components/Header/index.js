@@ -38,7 +38,7 @@ const Header = () => {
         <div className="nav-bar">
           <img
             className="logo"
-            onClick={() => window.location.replace("/")}
+            onClick={() => history.push("/")}
             src="/images/logo-airport.svg"
             alt="logo"
           />
