@@ -33,10 +33,11 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "env-cmd -f .env react-app-rewired start",
+    "start": "NODE_ENV=production env-cmd -f .env react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "heroku-postbuild": "ng build --prod"
   },
   "eslintConfig": {
     "extends": [
