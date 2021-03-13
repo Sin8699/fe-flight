@@ -9,12 +9,12 @@ export const renderAction = ({ onEdit, onDelete }) => {
       onClick: onEdit,
     },
 
-    {
-      key: "delete",
-      icon: DeleteRounded,
-      label: "Delete",
-      onClick: onDelete,
-    },
+    // {
+    //   key: "delete",
+    //   icon: DeleteRounded,
+    //   label: "Delete",
+    //   onClick: onDelete,
+    // },
   ];
   return LIST_ACTIONS;
 };

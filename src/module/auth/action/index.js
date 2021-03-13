@@ -62,9 +62,15 @@ const mapDispatchToAC = {
     data,
   }),
   getAllData: () => async ({ Api }) => {
-    let { result, status } = await Api.get(`user`);
+    let { result, status } = await Api.get(`user/all`);
     if (status === 200) {
       authDispatcher.getDataSuccess(result);
+    }
+  },
+  updateData: ({ data, id }, callback) => async ({ Api }) => {
+    let { status } = await Api.post(`user/update-user`, data);
+    if (status === 200) {
+      callback && callback();
     }
   },
   setState: (state, value) => ({ state, value }),

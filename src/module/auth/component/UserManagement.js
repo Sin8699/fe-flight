@@ -17,11 +17,10 @@ import { TYPE_MODAL } from "@/constants/modal";
 import UserModal from "./UserModal";
 import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
-import userDispatcher from "../action";
+import authDispatcher from "../action";
 
 const UserManagement = () => {
-  const { list } = useSelector((state) => state.auth);
-  console.log('list: ', list);
+  const { listUser } = useSelector((state) => state.auth);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -31,7 +30,7 @@ const UserManagement = () => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   useEffect(() => {
-    userDispatcher.getAllData();
+    authDispatcher.getAllData();
   }, []);
 
   const onShowModal = (type) => {
@@ -46,10 +45,12 @@ const UserManagement = () => {
   };
   const onSuccessAction = () => {
     onCloseModal();
-    userDispatcher.getAllData();
+    authDispatcher.getAllData();
   };
 
-  const handleSubmit = (data) => {};
+  const handleSubmit = (data) => {
+    authDispatcher.updateData({ data, id: data.email }, onSuccessAction);
+  };
 
   const handleDeleteItem = () => {};
 
@@ -88,16 +89,15 @@ const UserManagement = () => {
       </Menu>
       <TableContainer
         title="User Management"
-        data={list}
+        data={listUser}
         header={TableHeader}
-        onAddNew={() => onShowModal(TYPE_MODAL.Create)}
         renderRow={(row) => (
           <>
-            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.fullName}</TableCell>
             <TableCell>{row.email}</TableCell>
-            <TableCell>{row.airportTo}</TableCell>
-            <TableCell>{row.dateStart}</TableCell>
-            <TableCell>{row.dateEnd}</TableCell>
+            <TableCell>{row.numberPhone}</TableCell>
+            <TableCell>{row.accountBalance}</TableCell>
+            <TableCell>{row.role}</TableCell>
             <TableCell align="right">
               <IconButton
                 onClick={(e) => {

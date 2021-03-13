@@ -35,6 +35,14 @@ const middleAirportSchema = Yup.object().shape({
   timeDelay: Yup.string().required("Time delay is required"),
 });
 
+const userSchema = Yup.object().shape({
+  fullName: Yup.string().required("Full Name is required"),
+  email: Yup.string().required("Email is required"),
+  numberPhone: Yup.string().required("Phone Number is required"),
+  accountBalance: Yup.string().required("Account Balance is required"),
+  role: Yup.string().required("Role is required"),
+});
+
 const bookTicketSchema = Yup.object().shape({
   normalSeats: Yup.string()
     .nullable()
@@ -57,6 +65,7 @@ const schema = {
   airportSchema,
   middleAirportSchema,
   bookTicketSchema,
+  userSchema,
 };
 
 const validateData = (validateChoose, formValue, callback) => {

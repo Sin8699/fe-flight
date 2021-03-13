@@ -1,31 +1,23 @@
 export const userColumn = [
   {
-    label: "Name",
-    stateValue: "name",
+    label: "Full Name",
+    stateValue: "fullName",
   },
   {
     label: "Email",
     stateValue: "email",
   },
   {
-    label: "To",
-    stateValue: "airportTo",
+    label: "Phone Number",
+    stateValue: "numberPhone",
   },
   {
-    label: "Start Date",
-    stateValue: "dateStart",
+    label: "Account Balance",
+    stateValue: "accountBalance",
   },
   {
-    label: "End Date",
-    stateValue: "dateEnd",
-  },
-  {
-    label: "Vip Price",
-    stateValue: "vipPrice",
-  },
-  {
-    label: "Normal Price",
-    stateValue: "normalPrice",
+    label: "Role",
+    stateValue: "role",
   },
   {
     label: "",

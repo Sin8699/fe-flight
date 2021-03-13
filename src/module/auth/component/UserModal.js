@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DialogContent, TextField, Grid } from "@material-ui/core";
+import { DialogContent, TextField, Grid, MenuItem } from "@material-ui/core";
 import { ClearRounded } from "@material-ui/icons";
 import { TYPE_MODAL } from "@/constants/modal";
 import { ButtonEnhance, ModalFooter, ModalPage } from "@/componentsUI";
@@ -30,7 +30,7 @@ const UserModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
       <DialogContent>
         <div className="modal-header">
           {typeModal === TYPE_MODAL.Create && "New User"}
-          {typeModal === TYPE_MODAL.Edit && selectedItem.name}
+          {typeModal === TYPE_MODAL.Edit && selectedItem.fullName}
           <ClearRounded
             style={{ cursor: "pointer", float: "right", color: "#CACFD3" }}
             onClick={onClose}
@@ -41,24 +41,58 @@ const UserModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.name}
-                helperText={errors.name}
-                label="Name"
-                value={formValue.name}
-                onChange={handleChangeForm("name")}
-                disabled={typeModal === TYPE_MODAL.View}
+                error={errors.fullName}
+                helperText={errors.fullName}
+                label="Full Name"
+                value={formValue.fullName}
+                onChange={handleChangeForm("fullName")}
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                error={errors.address}
-                helperText={errors.address}
-                label="Address"
-                value={formValue.address}
-                onChange={handleChangeForm("address")}
-                disabled={typeModal === TYPE_MODAL.View}
+                disabled
+                label="Email"
+                value={formValue.email}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                error={errors.numberPhone}
+                helperText={errors.numberPhone}
+                label="Phone Number"
+                value={formValue.numberPhone}
+                onChange={handleChangeForm("numberPhone")}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                error={errors.accountBalance}
+                helperText={errors.accountBalance}
+                label="Account Balance"
+                value={formValue.accountBalance}
+                onChange={handleChangeForm("accountBalance")}
+                type="number"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                error={errors.role}
+                helperText={errors.role}
+                label="Role"
+                value={formValue.role || ""}
+                onChange={handleChangeForm("role")}
+                select
+              >
+                {["ADMIN", "GUEST"].map((role) => (
+                  <MenuItem key={role} value={role}>
+                    {role}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
           </Grid>
         </div>
