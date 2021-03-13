@@ -76,7 +76,7 @@ const TableContainer = ({
   useEffect(() => {
     if (!!search) {
       const filteredData = filter(data, (item) =>
-        includes(item[searchKey]?.toLowerCase(), search)
+        includes(item[searchKey]?.toString(), search)
       );
       setLocalData(filteredData);
     } else setLocalData(data);

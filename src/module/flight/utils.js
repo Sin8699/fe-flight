@@ -9,12 +9,12 @@ export const renderAction = ({
   role,
 }) => {
   let LIST_ACTIONS = [
-    {
-      key: "delete",
-      icon: DeleteRounded,
-      label: "Delete",
-      onClick: onDelete,
-    },
+    // {
+    //   key: "delete",
+    //   icon: DeleteRounded,
+    //   label: "Delete",
+    //   onClick: onDelete,
+    // },
   ];
   if (role === ROLE_PERMISSION.Admin) {
     LIST_ACTIONS.unshift({

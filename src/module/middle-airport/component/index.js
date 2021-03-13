@@ -47,10 +47,15 @@ const MiddleAirportManagement = () => {
     setTypeModal(null);
   };
 
+  const onSuccess = () => {
+    onCloseModal();
+    midAirportDispatcher.getData();
+  };
+
   const handleSubmit = (data) => {
     if (typeModal === TYPE_MODAL.Create)
-      midAirportDispatcher.createData(data, onCloseModal);
-    else midAirportDispatcher.updateData(data, onCloseModal);
+      midAirportDispatcher.createData(data, onSuccess);
+    else midAirportDispatcher.updateData({ data, id: data.id }, onSuccess);
   };
 
   const handleDeleteItem = () => {};

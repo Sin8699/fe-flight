@@ -6,7 +6,6 @@ const mapDispatchToAC = {
   }),
   getData: (search, paging) => async ({ Api }) => {
     let { result, status } = await Api.get(`history-sale`);
-    console.log('result: ', result);
     if (status === 200) {
       saleDispatcher.getDataSuccess(result);
     }

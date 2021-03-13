@@ -21,6 +21,8 @@ import flightDispatcher from "../action";
 import airportDispatcher from "@/module/airport/action";
 import saleDispatcher from "@/module/history-sale/action";
 import moment from "moment";
+import { ROLE_PERMISSION } from "@/constants/permission";
+import { SHOW_DATE_TIME } from "@/constants/dateTime";
 
 const FlightManagement = () => {
   const { list } = useSelector((state) => state.flight);
@@ -55,7 +57,6 @@ const FlightManagement = () => {
   };
 
   const handleSubmit = (data) => {
-    console.log('data: ', data);
     if (typeModal === TYPE_MODAL.Create)
       flightDispatcher.createData(data, onSuccessAction);
     else {
@@ -117,14 +118,21 @@ const FlightManagement = () => {
         title="Flight"
         data={list}
         header={TableHeader}
-        onAddNew={() => onShowModal(TYPE_MODAL.Create)}
+        onAddNew={
+          userInfo?.role === ROLE_PERMISSION.Admin
+            ? () => onShowModal(TYPE_MODAL.Create)
+            : false
+        }
+        searchKey="id"
         renderRow={(row) => (
           <>
-            <TableCell>{row.name}</TableCell>
+            {/* <TableCell>{row.name}</TableCell> */}
             <TableCell>{row.airportFrom}</TableCell>
             <TableCell>{row.airportTo}</TableCell>
-            <TableCell>{row.dateStart}</TableCell>
-            <TableCell>{row.dateEnd}</TableCell>
+            <TableCell>
+              {moment(row.dateStart).format(SHOW_DATE_TIME)}
+            </TableCell>
+            <TableCell>{moment(row.dateEnd).format(SHOW_DATE_TIME)}</TableCell>
             <TableCell>{row.vipPrice}</TableCell>
             <TableCell>{row.normalPrice}</TableCell>
             <TableCell align="right">

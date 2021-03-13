@@ -19,10 +19,12 @@ import DeleteModal from "@/components/DeleteModal";
 import { useSelector } from "react-redux";
 import saleDispatcher from "../action";
 import moment from "moment";
-import { FORMAT_DATE_TIME } from "@/constants/dateTime";
+import { SHOW_DATE_TIME } from "@/constants/dateTime";
+import { ROLE_PERMISSION } from "@/constants/permission";
 
 const SaleManagement = () => {
   const { list } = useSelector((state) => state.historySale);
+  const { userInfo } = useSelector((state) => state.auth);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -60,7 +62,11 @@ const SaleManagement = () => {
       setTypeModal(TYPE_MODAL.View);
       setShowModal(true);
     },
-    onCancelTicket: () => {},
+    onCancelTicket: () => {
+      saleDispatcher.cancelTicket(selectedItem.id, () => {
+        saleDispatcher.getData();
+      });
+    },
     selectedItem,
   });
 
@@ -89,7 +95,7 @@ const SaleManagement = () => {
         title="History Sale"
         data={list}
         header={TableHeader}
-        onAddNew={() => onShowModal(TYPE_MODAL.Create)}
+        searchKey="flightCode"
         renderRow={(row) => (
           <>
             {/* <TableCell>{row.name}</TableCell> */}
@@ -97,10 +103,10 @@ const SaleManagement = () => {
             <TableCell>{row.flightInfo?.airportFrom}</TableCell>
             <TableCell>{row.flightInfo?.airportTo}</TableCell>
             <TableCell>
-              {moment(row.flightInfo?.dateStart).format(FORMAT_DATE_TIME)}
+              {moment(row.flightInfo?.dateStart).format(SHOW_DATE_TIME)}
             </TableCell>
             <TableCell>
-              {moment(row.flightInfo?.dateEnd).format(FORMAT_DATE_TIME)}
+              {moment(row.flightInfo?.dateEnd).format(SHOW_DATE_TIME)}
             </TableCell>
             <TableCell>{row.flightInfo?.vipPrice}</TableCell>
             <TableCell>{row.flightInfo?.normalPrice}</TableCell>

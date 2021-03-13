@@ -1,8 +1,8 @@
 export const flightColumn = [
-  {
-    label: "Name",
-    stateValue: "name",
-  },
+  // {
+  //   label: "Name",
+  //   stateValue: "name",
+  // },
   {
     label: "From",
     stateValue: "airportFrom",
