@@ -1,6 +1,9 @@
 {
   "name": "fe-flight",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
