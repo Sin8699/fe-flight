@@ -13,6 +13,7 @@ const Header = () => {
 
   const { accessToken } = loadFromStorage("user") || {};
   const role = useSelector((state) => get(state, "auth.userInfo.role"));
+  const isAdmin = role === ROLE_PERMISSION.Admin;
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -55,12 +56,12 @@ const Header = () => {
             ) : (
               <div className="link-group">
                 <Link to={`/${urlLabel.flightManagement}`} className="link-btn">
-                  Book Ticket
+                  {isAdmin ? "Flight Management" : "Book Ticket"}
                 </Link>
                 <Link to={`/${urlLabel.saleHistory}`} className="link-btn">
                   Booking History
                 </Link>
-                {role === ROLE_PERMISSION.Admin && (
+                {isAdmin && (
                   <React.Fragment>
                     <Link
                       to={`/${urlLabel.airportManagement}`}
@@ -79,6 +80,9 @@ const Header = () => {
                       className="link-btn"
                     >
                       User Management
+                    </Link>
+                    <Link to={`/${urlLabel.saleSummary}`} className="link-btn">
+                      Sale Summary
                     </Link>
                   </React.Fragment>
                 )}
@@ -117,7 +121,7 @@ const Header = () => {
                   <MenuItem
                     onClick={() => handleChangePath(urlLabel.flightManagement)}
                   >
-                    Book Ticket
+                    {isAdmin ? "Flight Management" : "Book Ticket"}
                   </MenuItem>
                   {role === ROLE_PERMISSION.Admin && (
                     <React.Fragment>
@@ -139,6 +143,11 @@ const Header = () => {
                         }
                       >
                         User Management
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => handleChangePath(urlLabel.saleSummary)}
+                      >
+                        Sale Summary
                       </MenuItem>
                     </React.Fragment>
                   )}

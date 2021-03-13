@@ -101,7 +101,13 @@ const TableContainer = ({
           </div>
         </div>
         <ToolsBar>
-          <div style={{ display: "flex", marginBottom: 10 }}>
+          <div
+            style={{
+              display: "flex",
+              marginBottom: 10,
+              alignItems: "flex-end",
+            }}
+          >
             <div className="search-container">
               <Input
                 allowClear

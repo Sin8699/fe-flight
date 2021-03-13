@@ -7,6 +7,7 @@ export const urlLabel = {
   signUp: "register",
   forgotPassword: "forgot-password",
   userManagement: "user-management",
+  saleSummary: "sale-summary",
 };
 
 export const ROLE_PERMISSION = {

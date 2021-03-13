@@ -30,7 +30,7 @@ const SaleModal = ({ onClose, selectedItem, typeModal, onSubmit }) => {
       <DialogContent>
         <div className="modal-header">
           {typeModal === TYPE_MODAL.Create && "New Sale"}
-          {typeModal === TYPE_MODAL.Edit && selectedItem.name}
+          {typeModal === TYPE_MODAL.Edit && 'Detail'}
           <ClearRounded
             style={{ cursor: "pointer", float: "right", color: "#CACFD3" }}
             onClick={onClose}

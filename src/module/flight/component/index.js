@@ -128,8 +128,8 @@ const FlightManagement = () => {
         renderRow={(row) => (
           <>
             {/* <TableCell>{row.name}</TableCell> */}
-            <TableCell>{row.airportFrom}</TableCell>
-            <TableCell>{row.airportTo}</TableCell>
+            <TableCell>{row.infoAirportFrom?.name}</TableCell>
+            <TableCell>{row.infoAirportTo?.name}</TableCell>
             <TableCell>
               {moment(row.dateStart).format(SHOW_DATE_TIME)}
             </TableCell>

@@ -7,12 +7,12 @@ export const renderAction = ({
   selectedItem,
 }) => {
   let LIST_ACTIONS = [
-    {
-      key: "view",
-      icon: Edit,
-      label: "View Detail",
-      onClick: onViewDetail,
-    },
+    // {
+    //   key: "view",
+    //   icon: Edit,
+    //   label: "View Detail",
+    //   onClick: onViewDetail,
+    // },
   ];
   if (!selectedItem?.status) {
     LIST_ACTIONS.unshift({
