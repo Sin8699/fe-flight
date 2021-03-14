@@ -20,12 +20,9 @@ import { useSelector } from "react-redux";
 import saleDispatcher from "../action";
 import moment from "moment";
 import { SHOW_DATE_TIME } from "@/constants/dateTime";
-import { ROLE_PERMISSION } from "@/constants/permission";
 
 const SaleManagement = () => {
   const { list } = useSelector((state) => state.historySale);
-  const { userInfo } = useSelector((state) => state.auth);
-
   const [selectedItem, setSelectedItem] = useState({});
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,6 +61,7 @@ const SaleManagement = () => {
     },
     onCancelTicket: () => {
       saleDispatcher.cancelTicket(selectedItem.id, () => {
+        setAnchorEl(null);
         saleDispatcher.getData();
       });
     },
@@ -111,17 +109,23 @@ const SaleManagement = () => {
             <TableCell>{row.flightInfo?.vipPrice}</TableCell>
             <TableCell>{row.flightInfo?.normalPrice}</TableCell>
             <TableCell>
-              {row.status ? TICKET_STATUS.Buy : TICKET_STATUS.Book}
+              {row.status === true
+                ? TICKET_STATUS.Buy
+                : row.status === false
+                ? TICKET_STATUS.Book
+                : TICKET_STATUS.Cancel}
             </TableCell>
             <TableCell align="right">
-              <IconButton
-                onClick={(e) => {
-                  setAnchorEl(e.currentTarget);
-                  setSelectedItem(row);
-                }}
-              >
-                <MoreVertRounded />
-              </IconButton>
+              {row.status !== null && (
+                <IconButton
+                  onClick={(e) => {
+                    setAnchorEl(e.currentTarget);
+                    setSelectedItem(row);
+                  }}
+                >
+                  <MoreVertRounded />
+                </IconButton>
+              )}
             </TableCell>
           </>
         )}

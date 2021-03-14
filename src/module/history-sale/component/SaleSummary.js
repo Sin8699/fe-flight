@@ -81,7 +81,7 @@ const SaleManagement = () => {
             <TableCell>{row.userID}</TableCell>
             <TableCell>{row.flightCode}</TableCell>
             <TableCell>{row.typeSeat}</TableCell>
-            <TableCell>{row.seatNumber}</TableCell>
+            <TableCell>{row.numberSeat}</TableCell>
           </>
         )}
       />

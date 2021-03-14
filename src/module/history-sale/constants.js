@@ -44,6 +44,7 @@ export const saleColumn = [
 export const TICKET_STATUS = {
   Book: "Booked",
   Buy: "Bought",
+  Cancel: "Canceled",
 };
 
 export const summaryColumn = [
