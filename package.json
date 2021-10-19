@@ -4,8 +4,7 @@
   "description": "Landing, Responsive & Business Template",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "node app.js",
-    "heroku-postbuild": "node app.js",
+    "start": "gulp",
     "build": "cross-env MODE=PROD gulp build",
     "build:test": "cross-env MODE=PROD gulp build:test",
     "live": "gulp compile:all && cross-env MODE=PROD gulp live",
@@ -17,15 +16,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/plugin-transform-strict-mode": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
-    "@fortawesome/fontawesome-free": "^5.15.3",
-    "@popperjs/core": "^2.6.0",
     "ansi": "^0.3.1",
-    "bootstrap": "5.0.1",
-    "bootstrap-icons": "^1.5.0",
     "browser-sync": "^2.26.10",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
@@ -33,8 +28,6 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "express": "^4.17.1",
-    "feather-icons": "^4.28.0",
     "gh-pages": "^3.1.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -52,7 +45,6 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-w3cjs": "^1.3.2",
-    "is_js": "^0.9.0",
     "merge-stream": "^2.0.0",
     "pretty": "^2.0.0",
     "require-dir": "^1.2.0",
@@ -60,8 +52,13 @@
     "webpack-stream": "^6.1.0",
     "yargs": "^15.4.0"
   },
-  "optionalDependencies": {
-    "fsevents": "2.1.2"
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@popperjs/core": "^2.6.0",
+    "bootstrap": "5.0.1",
+    "bootstrap-icons": "^1.5.0",
+    "feather-icons": "^4.28.0",
+    "is_js": "^0.9.0"
   },
   "browserslist": [
     "last 5 version"
