@@ -4,8 +4,8 @@
   "description": "Landing, Responsive & Business Template",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
-    "postinstall": "gulp default",
+    "start": "gulp serve",
+    "heroku-postbuild": "gulp serve",
     "build": "cross-env MODE=PROD gulp build",
     "build:test": "cross-env MODE=PROD gulp build:test",
     "live": "gulp compile:all && cross-env MODE=PROD gulp live",
@@ -17,7 +17,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.10.4",
     "@babel/plugin-transform-strict-mode": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
@@ -51,9 +51,7 @@
     "require-dir": "^1.2.0",
     "through2": "^4.0.2",
     "webpack-stream": "^6.1.0",
-    "yargs": "^15.4.0"
-  },
-  "dependencies": {
+    "yargs": "^15.4.0",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@popperjs/core": "^2.6.0",
     "bootstrap": "5.0.1",
