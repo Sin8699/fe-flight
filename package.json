@@ -4,7 +4,7 @@
   "description": "Landing, Responsive & Business Template",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "gulp",
     "postinstall": "gulp default",
     "build": "cross-env MODE=PROD gulp build",
     "build:test": "cross-env MODE=PROD gulp build:test",
