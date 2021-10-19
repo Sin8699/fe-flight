@@ -60,6 +60,9 @@
     "webpack-stream": "^6.1.0",
     "yargs": "^15.4.0"
   },
+  "optionalDependencies": {
+    "fsevents": "2.1.2"
+  },
   "browserslist": [
     "last 5 version"
   ]
