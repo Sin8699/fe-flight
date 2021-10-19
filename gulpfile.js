@@ -24,6 +24,10 @@ gulp.task("live", gulp.series("clean:live", "build", "build:push"));
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 gulp.task("default", gulp.series("clean", "compile", "watch"));
 
-gulp.task("heroku:production", function(){
-    console.log('hello'); // the task does not need to do anything.
+gulp.task("serveprod", function () {
+  connect.server({
+    root: [your_project_path],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false,
+  });
 });
