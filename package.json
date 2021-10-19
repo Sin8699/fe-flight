@@ -4,8 +4,8 @@
   "description": "Landing, Responsive & Business Template",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp serve",
-    "heroku-postbuild": "gulp serve",
+    "start": "nodemon app.js",
+    "heroku-postbuild": "gulp",
     "build": "cross-env MODE=PROD gulp build",
     "build:test": "cross-env MODE=PROD gulp build:test",
     "live": "gulp compile:all && cross-env MODE=PROD gulp live",
